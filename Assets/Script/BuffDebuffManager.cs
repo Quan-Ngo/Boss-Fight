@@ -35,4 +35,17 @@ public class BuffDebuffManager : MonoBehaviour
 			playerBuffDebuff.Add(buffDebuff, 1);
 		}
 	}
+	
+	public void applyBuffDebuffToBoss(BuffAndDebuff buffDebuff)
+	{
+		if (bossBuffDebuff.ContainsKey(buffDebuff))
+		{
+			bossBuffDebuff[buffDebuff] += 1;
+		}
+		else
+		{
+			bossBuffDebuff.Add(buffDebuff, 1);
+		}
+	}
+
 }
