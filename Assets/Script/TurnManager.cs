@@ -6,9 +6,24 @@ public enum Turn {PLAYER, BOSS}
 
 public class TurnManager : MonoBehaviour
 {
+	public static TurnManager Instance;
+
 	[SerializeField]
 	private Turn currentActiveTurn;
-	
+
+	void Awake()
+	{
+		if (Instance == null)
+		{
+			Instance = this;
+		}
+		else
+		{
+			Destroy(this);
+		}
+	}
+
+
 	public void changeTurn()
 	{
 		switch (currentActiveTurn)
