@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public enum BuffAndDebuff {DAMAGEUP, LIFESTEAL, DAMAGEDOWN, SHIELDBREAK}
 
 public class BuffDebuffManager : MonoBehaviour
@@ -25,9 +24,15 @@ public class BuffDebuffManager : MonoBehaviour
 		}
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void applyBuffDebuffToPlayer(BuffAndDebuff buffDebuff)
+	{
+		if (playerBuffDebuff.ContainsKey(buffDebuff))
+		{
+			playerBuffDebuff[buffDebuff] += 1;
+		}
+		else
+		{
+			playerBuffDebuff.Add(buffDebuff, 1);
+		}
+	}
 }
