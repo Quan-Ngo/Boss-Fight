@@ -1134,6 +1134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6ebb2fe27eaf44182383820e599c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  phaseOneThreshholdPercent: 75
+  phaseTwoThreshholdPercent: 50
+  phaseThreeThreshholdPercent: 10
+  maxBossHealth: 100
+  bossHealth: 0
 --- !u!1 &1520832618
 GameObject:
   m_ObjectHideFlags: 0
