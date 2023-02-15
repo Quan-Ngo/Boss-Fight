@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Buttons : MonoBehaviour
 {
-	
     bool isPlayerTurn()
 	{
 		return TurnManager.Instance.checkIsPlayerTurn();

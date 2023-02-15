@@ -7,8 +7,12 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
 
-    public int AP = 5;
+    private int AP = 5;
     [SerializeField] private Text APText;
+
+    private int Health = 10;
+
+    private int Block = 0;
 
     void Awake()
     {
@@ -19,6 +23,23 @@ public class PlayerManager : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+
+        Debug.Log("Health =" + Health.ToString());
+        Debug.Log("Block =" + Block.ToString());
+    }
+
+    public void takeDamage(int Damage)
+    {
+        if (Block >=  Damage)
+        {
+            Block -= Damage;
+        }
+        else
+        {
+            Damage -= Block;
+            Block = 0;
+            Health -= Damage;
         }
     }
 
@@ -39,7 +60,8 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 2)
         {
             updateAP(-2);
-            Debug.Log("Blocky Blocky");
+            Block += 10; //Temporary Value for Block
+            Debug.Log("Block =" + Block.ToString());
         }
         else
         {
@@ -52,6 +74,7 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 3)
         {
             updateAP(-3);
+            BuffDebuffManager.instance.applyBuffDebuffToPlayer(BuffAndDebuff.DAMAGEUP);
             Debug.Log("POWER OVERFLOWING");
         }
         else
@@ -65,6 +88,7 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 3)
         {
             updateAP(-3);
+            BuffDebuffManager.instance.applyBuffDebuffToPlayer(BuffAndDebuff.LIFESTEAL);
             Debug.Log("Your Soul is Mine!");
         }
         else
@@ -79,9 +103,13 @@ public class PlayerManager : MonoBehaviour
         APText.text = ("AP: " + AP.ToString());
     }
 
-    public void refreshAP()
+    public void turnStart()
     {
         AP = 5;
+        Block = 0;
+
+        Debug.Log("Health =" + Health.ToString());
+        Debug.Log("Block =" + Block.ToString());
     }
 
 }
