@@ -40,6 +40,7 @@ public class TurnManager : MonoBehaviour
     void startPlayerTurn()
 	{
 		currentActiveTurn = Turn.PLAYER;
+		PlayerManager.Instance.refreshAP();
 	}
 	
 	void startBossTurn()

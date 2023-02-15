@@ -22,8 +22,6 @@ public class Buttons : MonoBehaviour
     {
         if (isPlayerTurn())
         {
-			//CHECK FOR AP ONCE THAT EXISTS
-
 			PlayerManager.Instance.attack();
         }
         else
@@ -36,8 +34,6 @@ public class Buttons : MonoBehaviour
 	{
 		if (isPlayerTurn())
 		{
-			//CHECK FOR AP ONCE THAT EXISTS
-
 			PlayerManager.Instance.defend();
 		}
 		else
@@ -50,8 +46,6 @@ public class Buttons : MonoBehaviour
 	{
 		if (isPlayerTurn())
 		{
-			//CHECK FOR AP ONCE THAT EXISTS
-
 			PlayerManager.Instance.buff();
 		}
 		else
@@ -64,8 +58,6 @@ public class Buttons : MonoBehaviour
 	{
 		if (isPlayerTurn())
 		{
-			//CHECK FOR AP ONCE THAT EXISTS
-
 			PlayerManager.Instance.lifesteal();
 		}
 		else

@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
+
+    public int AP = 5;
+    [SerializeField] private Text APText;
 
     void Awake()
     {
@@ -20,22 +24,64 @@ public class PlayerManager : MonoBehaviour
 
     public void attack()
     {
-        Debug.Log("Stabby Stabby");
+        if (AP >= 1) {
+            updateAP(-1);
+            Debug.Log("Stabby Stabby");
+        }
+        else
+        {
+            Debug.Log("Not Enough AP");
+        }
     }
 
     public void defend()
     {
-        Debug.Log("Blocky Blocky");
+        if (AP >= 2)
+        {
+            updateAP(-2);
+            Debug.Log("Blocky Blocky");
+        }
+        else
+        {
+            Debug.Log("Not Enough AP");
+        }
     }
 
     public void buff()
     {
-        Debug.Log("POWER OVERFLOWING");
+        if (AP >= 3)
+        {
+            updateAP(-3);
+            Debug.Log("POWER OVERFLOWING");
+        }
+        else
+        {
+            Debug.Log("Not Enough AP");
+        }
     }
 
     public void lifesteal()
     {
-        Debug.Log("Your Soul is Mine!");
+        if (AP >= 3)
+        {
+            updateAP(-3);
+            Debug.Log("Your Soul is Mine!");
+        }
+        else
+        {
+            Debug.Log("Not Enough AP");
+        }
+    }
+
+    private void updateAP(int amount)
+    {
+        AP += amount;
+        APText.text = ("AP: " + AP.ToString());
+    }
+
+    public void refreshAP()
+    {
+        AP = 5;
     }
 
 }
