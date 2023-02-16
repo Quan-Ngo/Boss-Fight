@@ -7,12 +7,16 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
 
+    //Player Statistics
     private int AP = 5;
+    private int Block = 0;
+    private int Damage = 5;
+    private int Health = 10;
+    private int Lifesteal = 0;
+
+    //Player UI Elements
     [SerializeField] private Text APText;
 
-    private int Health = 10;
-
-    private int Block = 0;
 
     void Awake()
     {
@@ -74,7 +78,7 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 3)
         {
             updateAP(-3);
-            BuffDebuffManager.instance.applyBuffDebuffToPlayer(BuffAndDebuff.DAMAGEUP);
+            Buff DamageBoost = new Buff(Type.Buff, Stats.Damage, 5, -1);
             Debug.Log("POWER OVERFLOWING");
         }
         else
@@ -106,7 +110,6 @@ public class PlayerManager : MonoBehaviour
     public void turnStart()
     {
         AP = 5;
-        Block = 0;
 
         Debug.Log("Health =" + Health.ToString());
         Debug.Log("Block =" + Block.ToString());

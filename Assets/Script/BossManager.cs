@@ -34,16 +34,8 @@ public class BossManager : MonoBehaviour
         }
     }
 
-    /*public void testAttack()
-    {
-        PlayerManager.Instance.takeDamage(15);
-        Debug.Log("Rawr, Die");
-        TurnManager.Instance.changeTurn();
-    }*/
-
     public void turnStart()
     {
-        //testAttack();
 		switch (bossPhase)
 		{
 			case 0:
@@ -77,7 +69,7 @@ public class BossManager : MonoBehaviour
 		bossHealth -= amount;
 		if (bossHealth <= (int) (maxBossHealth * (phaseThreeThreshholdPercent/100)))
 		{
-			bossPhase = 2;
+			bossPhase = 3;
 		}
 		else if (bossHealth <= (int) (maxBossHealth * (phaseTwoThreshholdPercent/100)))
 		{
