@@ -6,18 +6,18 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
+    private int MaxHealth = 10;
 
     //Player Statistics
-    private int AP = 5;
-    private int Block = 0;
-    private int Damage = 5;
-    private int Health = 10;
-    private int Lifesteal = 0;
+    [SerializeField] private int AP = 5;
+    [SerializeField] private int Block = 0;
+    [SerializeField] private int Damage = 5;
+    [SerializeField] private int Health = 10;
+    [SerializeField] private float Lifesteal = 0f;
 
     //Player Temp Statistics
-    private int TempAP = 0;  
     private int TempDamage = 0;
-    private int TempLifesteal = 0;
+    private float TempLifesteal = 0f;
 
     //Player UI Elements
     [SerializeField] private Text APText;
@@ -40,11 +40,35 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Block =" + Block.ToString());
     }
 
+    public void turnStart()
+    {
+        AP = 5;
+        APText.text = ("AP: " + AP.ToString());
+
+
+
+        // Debug Statements
+        Debug.Log("Health =" + Health.ToString());
+        Debug.Log("Block = " + Block.ToString());
+
+        /*foreach (KeyValuePair<string, Buff> buff in PlayerBuffs)
+        {
+            Debug.Log(buff.Key);
+        }*/
+    }
+
     public void attack()
     {
         if (AP >= 1) {
             updateAP(-1);
+            BossManager.Instance.takeDamage(Damage + TempDamage);
             Debug.Log("I attacked for " + (Damage + TempDamage).ToString() + " Damage");
+
+            if(Lifesteal + TempLifesteal > 0)
+            {
+                int DmgToHP = (int) ( (Damage + TempDamage) * (Lifesteal + TempLifesteal) );
+                heal(DmgToHP);
+            }
         }
         else
         {
@@ -58,7 +82,7 @@ public class PlayerManager : MonoBehaviour
         {
             updateAP(-2);
             Block += 10; //Temporary Value for Block
-            Debug.Log("Block =" + Block.ToString());
+            Debug.Log("I gained " + Block.ToString() + " Block");
         }
         else
         {
@@ -73,7 +97,7 @@ public class PlayerManager : MonoBehaviour
             updateAP(-3);
             Buff DamageBuff5 = new Buff("DamageBuff5" ,Type.Buff, Stats.Damage, 5, -1, 1);
             addBuff(DamageBuff5);
-            Debug.Log("" + TempDamage.ToString());
+            Debug.Log("I Gained a Damage Buff of " + DamageBuff5.buffValue.Value);
         }
         else
         {
@@ -88,7 +112,7 @@ public class PlayerManager : MonoBehaviour
             updateAP(-3);
             Buff LifestealBuff50 = new Buff("LifestealBuff50", Type.Buff, Stats.Lifesteal, 50, 3, -1);
             addBuff(LifestealBuff50);
-            Debug.Log("" + TempLifesteal.ToString());
+            Debug.Log("I Gained a Lifesteal Buff of " + LifestealBuff50.buffValue.Value + "%");
         }
         else
         {
@@ -102,23 +126,6 @@ public class PlayerManager : MonoBehaviour
         APText.text = ("AP: " + AP.ToString());
     }
 
-    public void turnStart()
-    {
-        AP = 5;
-        APText.text = ("AP: " + AP.ToString());
-
-        
-        
-        // Debug Statements
-        Debug.Log("Health =" + Health.ToString());
-        Debug.Log("Block = " + Block.ToString());
-
-        foreach (KeyValuePair<string, Buff> buff in PlayerBuffs)
-        {
-            Debug.Log(buff.Key);
-        }
-    }
-
     public void takeDamage(int Damage)
     {
         if (Block >= Damage)
@@ -130,6 +137,18 @@ public class PlayerManager : MonoBehaviour
             Damage -= Block;
             Block = 0;
             Health -= Damage;
+        }
+    }
+
+    public void heal(int amount)
+    {
+        if (Health + amount >= MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+        else
+        {
+            Health += amount;
         }
     }
 
@@ -162,7 +181,7 @@ public class PlayerManager : MonoBehaviour
                 TempDamage += buff.buffValue.Value;
                 break;
             case Stats.Lifesteal:
-                TempLifesteal += buff.buffValue.Value;
+                TempLifesteal += ((float) (buff.buffValue.Value)) / 100f;
                 break;
         }
     }

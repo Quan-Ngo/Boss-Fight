@@ -64,7 +64,7 @@ public class BossManager : MonoBehaviour
 		TurnManager.Instance.changeTurn();
 	}
 	
-	void takeDamage(int amount)
+	public void takeDamage(int amount)
 	{
 		bossHealth -= amount;
 		if (bossHealth <= (int) (maxBossHealth * (phaseThreeThreshholdPercent/100)))
