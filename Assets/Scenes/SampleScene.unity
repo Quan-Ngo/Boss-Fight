@@ -1143,6 +1143,8 @@ MonoBehaviour:
   phaseThreeThreshholdPercent: 10
   maxBossHealth: 100
   bossHealth: 0
+  bossPhase: 0
+  baseDamage: 3
 --- !u!1 &1531031951
 GameObject:
   m_ObjectHideFlags: 0
