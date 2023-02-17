@@ -11,29 +11,31 @@ public enum Type
 
 public enum Stats
 {
-    Block,
     Damage,
     Lifesteal
 }
 
 public class Buff
 {
+    public string Name;
     public Type Type;
-    public Stats Stat;
 
     public int Duration;
     public BuffValue buffValue;
 
-    public Buff(Type type, Stats stat, int value, int duration)
+    public int Stacks;
+
+    public Buff(string name, Type type, Stats stat, int value, int duration, int stacks)
     {
+        Name = name;
         Type = type;
         Duration = duration;
+        Stacks = stacks;
 
         buffValue = new BuffValue(stat, value);
     }
 }
 
-[System.Serializable]
 public class BuffValue
 {
     public Stats Stat;

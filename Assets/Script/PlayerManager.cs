@@ -14,8 +14,15 @@ public class PlayerManager : MonoBehaviour
     private int Health = 10;
     private int Lifesteal = 0;
 
+    //Player Temp Statistics
+    private int TempAP = 0;  
+    private int TempDamage = 0;
+    private int TempLifesteal = 0;
+
     //Player UI Elements
     [SerializeField] private Text APText;
+
+    Dictionary<string, Buff> PlayerBuffs = new Dictionary<string, Buff>();
 
 
     void Awake()
@@ -33,25 +40,11 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Block =" + Block.ToString());
     }
 
-    public void takeDamage(int Damage)
-    {
-        if (Block >=  Damage)
-        {
-            Block -= Damage;
-        }
-        else
-        {
-            Damage -= Block;
-            Block = 0;
-            Health -= Damage;
-        }
-    }
-
     public void attack()
     {
         if (AP >= 1) {
             updateAP(-1);
-            Debug.Log("Stabby Stabby");
+            Debug.Log("I attacked for " + (Damage + TempDamage).ToString() + " Damage");
         }
         else
         {
@@ -78,8 +71,9 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 3)
         {
             updateAP(-3);
-            Buff DamageBoost = new Buff(Type.Buff, Stats.Damage, 5, -1);
-            Debug.Log("POWER OVERFLOWING");
+            Buff DamageBuff5 = new Buff("DamageBuff5" ,Type.Buff, Stats.Damage, 5, -1, 1);
+            addBuff(DamageBuff5);
+            Debug.Log("" + TempDamage.ToString());
         }
         else
         {
@@ -92,8 +86,9 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 3)
         {
             updateAP(-3);
-            BuffDebuffManager.instance.applyBuffDebuffToPlayer(BuffAndDebuff.LIFESTEAL);
-            Debug.Log("Your Soul is Mine!");
+            Buff LifestealBuff50 = new Buff("LifestealBuff50", Type.Buff, Stats.Lifesteal, 50, 3, -1);
+            addBuff(LifestealBuff50);
+            Debug.Log("" + TempLifesteal.ToString());
         }
         else
         {
@@ -110,9 +105,65 @@ public class PlayerManager : MonoBehaviour
     public void turnStart()
     {
         AP = 5;
+        APText.text = ("AP: " + AP.ToString());
 
+        
+        
+        // Debug Statements
         Debug.Log("Health =" + Health.ToString());
-        Debug.Log("Block =" + Block.ToString());
+        Debug.Log("Block = " + Block.ToString());
+
+        foreach (KeyValuePair<string, Buff> buff in PlayerBuffs)
+        {
+            Debug.Log(buff.Key);
+        }
     }
 
+    public void takeDamage(int Damage)
+    {
+        if (Block >= Damage)
+        {
+            Block -= Damage;
+        }
+        else
+        {
+            Damage -= Block;
+            Block = 0;
+            Health -= Damage;
+        }
+    }
+
+    public void addBuff(Buff buff)
+    {
+        if (PlayerBuffs.ContainsKey(buff.Name))
+        {
+            if (buff.Stacks >= 1)
+            {
+                PlayerBuffs[buff.Name].Stacks += 1;
+                addBuffToStat(buff);
+            }
+            else
+            {
+                PlayerBuffs[buff.Name].Duration = buff.Duration;
+            }
+        }
+        else
+        {
+            PlayerBuffs.Add(buff.Name, buff);
+            addBuffToStat(buff);
+        }
+    }
+
+    private void addBuffToStat(Buff buff)
+    {
+        switch (buff.buffValue.Stat)
+        {
+            case Stats.Damage:
+                TempDamage += buff.buffValue.Value;
+                break;
+            case Stats.Lifesteal:
+                TempLifesteal += buff.buffValue.Value;
+                break;
+        }
+    }
 }
