@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: change player script to add buff based on stack instead of just 1
+
 public class BossManager : MonoBehaviour
 {
     public static BossManager Instance;
@@ -47,7 +49,7 @@ public class BossManager : MonoBehaviour
 				phaseOneAI();
 				break;
 			case 2:
-				//phaseTwoAI();
+				phaseTwoAI();
 				break;
 			case 3:
 				//phaseThreeAI();
@@ -70,6 +72,22 @@ public class BossManager : MonoBehaviour
 				break;
 			case 1:
 				buffSelfDamage(1);
+				break;
+		}
+	}
+	
+	void phaseTwoAI()
+	{
+		switch (Random.Range(0, 3))
+		{
+			case 0:
+				attackPlayer();
+				break;
+			case 1:
+				buffSelfDamage(1);
+				break;
+			case 2:
+				debuffPlayerDamage(2);
 				break;
 		}
 	}
@@ -98,18 +116,22 @@ public class BossManager : MonoBehaviour
 	
 	void buffSelfDamage(int amount)
 	{
-		Buff damageBuff = new Buff("damageBuff" ,Type.Buff, Stats.Damage, 1, -1, 1);
-		for (int i = 0; i < amount; i++)
+		Buff damageBuff = new Buff("damageBuff" ,Type.Buff, Stats.Damage, 1, -1, amount);
+		if (BossBuffs.ContainsKey(damageBuff.Name))
 		{
-			if (BossBuffs.ContainsKey(damageBuff.Name))
-			{
-				BossBuffs[damageBuff.Name].Stacks += 1;
-			}
-			else 
-			{
-				BossBuffs.Add(damageBuff.Name, damageBuff);
-			}
-			baseDamage += 1;
+			BossBuffs[damageBuff.Name].Stacks += amount;
 		}
+		else 
+		{
+			BossBuffs.Add(damageBuff.Name, damageBuff);
+		}
+		baseDamage += amount;
+	}
+	
+	void debuffPlayerDamage(int amount)
+	{
+		Debug.Log("Debuff Player");
+		Buff damageDebuff = new Buff("damageDebuff", Type.Debuff, Stats.Damage, -1, -1, amount);
+		PlayerManager.Instance.addBuff(damageDebuff);
 	}
 }
