@@ -52,7 +52,7 @@ public class BossManager : MonoBehaviour
 				phaseTwoAI();
 				break;
 			case 3:
-				//phaseThreeAI();
+				phaseThreeAI();
 				break;
 		}
 		TurnManager.Instance.changeTurn();
@@ -87,9 +87,15 @@ public class BossManager : MonoBehaviour
 				buffSelfDamage(1);
 				break;
 			case 2:
-				debuffPlayerDamage(2);
+				debuffPlayerDamage(1);
 				break;
 		}
+	}
+	
+	void phaseThreeAI()
+	{
+		buffSelfDamage(1);
+		attackPlayer();
 	}
 	
 	void attackPlayer()
