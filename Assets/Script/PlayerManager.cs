@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float Lifesteal = 0f;
 
     //Player Temp Statistics
-    private int TempDamage = 0;
+    [SerializeField] private int TempDamage = 0;
     private float TempLifesteal = 0f;
 
     //Player UI Elements
@@ -158,7 +158,7 @@ public class PlayerManager : MonoBehaviour
         {
             if (buff.Stacks >= 1)
             {
-                PlayerBuffs[buff.Name].Stacks += 1;
+                PlayerBuffs[buff.Name].Stacks += buff.Stacks;
                 addBuffToStat(buff);
             }
             else
@@ -178,7 +178,7 @@ public class PlayerManager : MonoBehaviour
         switch (buff.buffValue.Stat)
         {
             case Stats.Damage:
-                TempDamage += buff.buffValue.Value;
+                TempDamage += buff.buffValue.Value * buff.Stacks;
                 break;
             case Stats.Lifesteal:
                 TempLifesteal += ((float) (buff.buffValue.Value)) / 100f;
