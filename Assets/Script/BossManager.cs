@@ -16,6 +16,7 @@ public class BossManager : MonoBehaviour
 	[SerializeField] private int bossHealth;
 	[SerializeField] private int bossPhase;
 	[SerializeField] private int baseDamage;
+	[SerializeField] private bool phaseTransition;
 	
 	Dictionary<string, Buff> BossBuffs = new Dictionary<string, Buff>();
 	
@@ -24,6 +25,7 @@ public class BossManager : MonoBehaviour
 	{
 		bossPhase = 0;
 		bossHealth = maxBossHealth;
+		phaseTransition = false;
 	}
 	
     void Awake()
@@ -40,6 +42,12 @@ public class BossManager : MonoBehaviour
 
     public void turnStart()
     {
+		if (phaseTransition == true)
+		{
+			changePhase();
+			phaseTransition = false;
+		}
+		
 		switch (bossPhase)
 		{
 			case 0:
@@ -98,6 +106,7 @@ public class BossManager : MonoBehaviour
 		attackPlayer();
 	}
 	
+	
 	void attackPlayer()
 	{
 		PlayerManager.Instance.takeDamage(baseDamage);
@@ -109,14 +118,32 @@ public class BossManager : MonoBehaviour
 		if (bossHealth <= (maxBossHealth * (phaseThreeThreshholdPercent/100)))
 		{
 			bossPhase = 3;
+			phaseTransition = true;
 		}
 		else if (bossHealth <= (maxBossHealth * (phaseTwoThreshholdPercent/100)))
 		{
 			bossPhase = 2;
+			phaseTransition = true;
 		}
 		else if (bossHealth <= (maxBossHealth * (phaseOneThreshholdPercent/100)))
 		{
 			bossPhase = 1;
+			phaseTransition = true;
+		}
+	}
+	
+	void changePhase()
+	{
+		switch (bossPhase)
+		{
+			case 1:
+				debuffPlayerDamage(10);
+				break;
+			case 2:
+				debuffPlayerDamage(5);
+				buffSelfDamage(5);
+				debuffPlayerBlock(2);
+				break;
 		}
 	}
 	
@@ -136,8 +163,13 @@ public class BossManager : MonoBehaviour
 	
 	void debuffPlayerDamage(int amount)
 	{
-		Debug.Log("Debuff Player");
 		Buff damageDebuff = new Buff("damageDebuff", Type.Debuff, Stats.Damage, -1, -1, amount);
 		PlayerManager.Instance.addBuff(damageDebuff);
+	}
+	
+	void debuffPlayerBlock(int amount)
+	{
+		Buff blockDebuff = new Buff("blockDebuff", Type.Debuff, Stats.Block, -1, -1, amount);
+		PlayerManager.Instance.addBuff(blockDebuff);
 	}
 }
