@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour
 
     //Player Temp Statistics
     [SerializeField] private int TempDamage = 0;
-    private int TempBlock = 0;
+    [SerializeField] private int TempBlock = 4;
     private float TempLifesteal = 0f;
 
     //Player UI Elements
@@ -82,7 +82,7 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 2)
         {
             updateAP(-2);
-            Block += 10 + TempBlock; //Temporary Value for Block
+            Block += TempBlock; //Temporary Value for Block
             Debug.Log("I gained " + Block.ToString() + " Block");
         }
         else
@@ -179,7 +179,7 @@ public class PlayerManager : MonoBehaviour
         switch (buff.buffValue.Stat)
         {
             case Stats.Block:
-                TempBlock += buff.buffValue.Value;
+                TempBlock += buff.buffValue.Value * buff.Stacks;
                 break;
             case Stats.Damage:
                 TempDamage += buff.buffValue.Value * buff.Stacks;
