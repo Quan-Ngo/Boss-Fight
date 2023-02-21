@@ -11,12 +11,14 @@ public class BossManager : MonoBehaviour
 	public float phaseTwoThreshholdPercent;
 	public float phaseThreeThreshholdPercent;
 	public int maxBossHealth;
+	public int enrageTurn;
 	
 	
 	[SerializeField] private int bossHealth;
 	[SerializeField] private int bossPhase;
 	[SerializeField] private int baseDamage;
 	[SerializeField] private bool phaseTransition;
+	[SerializeField] private bool enraged;
 	
 	Dictionary<string, Buff> BossBuffs = new Dictionary<string, Buff>();
 	
@@ -42,26 +44,39 @@ public class BossManager : MonoBehaviour
 
     public void turnStart()
     {
-		if (phaseTransition == true)
+		if (!enraged && TurnManager.Instance.getTurnCount() >= enrageTurn)
 		{
-			changePhase();
-			phaseTransition = false;
+			enraged = true;
 		}
 		
-		switch (bossPhase)
+		if (!enraged)
 		{
-			case 0:
-				phaseZeroAI();
-				break;
-			case 1:
-				phaseOneAI();
-				break;
-			case 2:
-				phaseTwoAI();
-				break;
-			case 3:
-				phaseThreeAI();
-				break;
+			if (phaseTransition == true)
+			{
+				changePhase();
+				phaseTransition = false;
+			}
+			
+			switch (bossPhase)
+			{
+				case 0:
+					phaseZeroAI();
+					break;
+				case 1:
+					phaseOneAI();
+					break;
+				case 2:
+					phaseTwoAI();
+					break;
+				case 3:
+					phaseThreeAI();
+					break;
+			}
+		}
+		else
+		{
+			buffSelfDamage(5);
+			attackPlayer();
 		}
 		TurnManager.Instance.changeTurn();
     }

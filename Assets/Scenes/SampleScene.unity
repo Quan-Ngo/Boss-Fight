@@ -359,6 +359,9 @@ MonoBehaviour:
   Damage: 5
   Health: 10
   Lifesteal: 0
+  blockGainOnAbility: 4
+  TempDamage: 0
+  TempBlock: 0
   APText: {fileID: 1741034357}
 --- !u!1 &201045871
 GameObject:
@@ -891,6 +894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff7fdc548bbad84c9793616cc5caaf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnCount: 0
   currentActiveTurn: 0
 --- !u!4 &1095275855
 Transform:
@@ -1142,9 +1146,12 @@ MonoBehaviour:
   phaseTwoThreshholdPercent: 50
   phaseThreeThreshholdPercent: 10
   maxBossHealth: 100
+  enrageTurn: 40
   bossHealth: 0
   bossPhase: 0
   baseDamage: 3
+  phaseTransition: 0
+  enraged: 0
 --- !u!1 &1531031951
 GameObject:
   m_ObjectHideFlags: 0

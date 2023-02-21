@@ -7,12 +7,15 @@ public enum Turn {PLAYER, BOSS}
 public class TurnManager : MonoBehaviour
 {
 	public static TurnManager Instance;
+	
+	[SerializeField] private int turnCount;
 
 	[SerializeField]
 	private Turn currentActiveTurn;
 
 	void Awake()
 	{
+		turnCount = 1;
 		if (Instance == null)
 		{
 			Instance = this;
@@ -33,6 +36,7 @@ public class TurnManager : MonoBehaviour
 				break;
 			case Turn.BOSS:
 				startPlayerTurn();
+				turnCount++;
 				break;
 		}
 	}
@@ -52,5 +56,10 @@ public class TurnManager : MonoBehaviour
 	public bool checkIsPlayerTurn()
 	{
 		return (currentActiveTurn == Turn.PLAYER);
+	}
+	
+	public int getTurnCount()
+	{
+		return turnCount;
 	}
 }
