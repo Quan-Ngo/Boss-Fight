@@ -14,10 +14,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private int Damage = 5;
     [SerializeField] private int Health = 10;
     [SerializeField] private float Lifesteal = 0f;
+	[SerializeField] private int blockGainOnAbility = 4;
 
     //Player Temp Statistics
     [SerializeField] private int TempDamage = 0;
-    [SerializeField] private int TempBlock = 4;
+    [SerializeField] private int TempBlock;
     private float TempLifesteal = 0f;
 
     //Player UI Elements
@@ -60,14 +61,22 @@ public class PlayerManager : MonoBehaviour
 
     public void attack()
     {
+		int damageDealt;
+		damageDealt = Damage + TempDamage;
+		
+		if (damageDealt < 0)
+		{
+			damageDealt = 0;
+		}
+		
         if (AP >= 1) {
             updateAP(-1);
-            BossManager.Instance.takeDamage(Damage + TempDamage);
-            Debug.Log("I attacked for " + (Damage + TempDamage).ToString() + " Damage");
+            BossManager.Instance.takeDamage(damageDealt);
+            Debug.Log("I attacked for " + (damageDealt).ToString() + " Damage");
 
             if(Lifesteal + TempLifesteal > 0)
             {
-                int DmgToHP = (int) ( (Damage + TempDamage) * (Lifesteal + TempLifesteal) );
+                int DmgToHP = (int) ( (damageDealt) * (Lifesteal + TempLifesteal) );
                 heal(DmgToHP);
             }
         }
@@ -82,7 +91,7 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 2)
         {
             updateAP(-2);
-            Block += TempBlock; //Temporary Value for Block
+            Block = blockGainOnAbility + TempBlock; //Temporary Value for Block
             Debug.Log("I gained " + Block.ToString() + " Block");
         }
         else
