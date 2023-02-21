@@ -11,6 +11,7 @@ public enum Type
 
 public enum Stats
 {
+    Block,
     Damage,
     Lifesteal
 }
