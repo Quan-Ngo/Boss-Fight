@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 //TODO: change player script to add buff based on stack instead of just 1
 
@@ -12,6 +13,8 @@ public class BossManager : MonoBehaviour
 	public float phaseThreeThreshholdPercent;
 	public int maxBossHealth;
 	public int enrageTurn;
+	public TMP_Text HPDisplay;
+	public TMP_Text dmgDisplay;
 	
 	
 	[SerializeField] private int bossHealth;
@@ -28,6 +31,8 @@ public class BossManager : MonoBehaviour
 		bossPhase = 0;
 		bossHealth = maxBossHealth;
 		phaseTransition = false;
+		HPDisplay.text = "HP: " + bossHealth;
+		dmgDisplay.text = "Damage: " + baseDamage;
 	}
 	
     void Awake()
@@ -130,6 +135,8 @@ public class BossManager : MonoBehaviour
 	public void takeDamage(int amount)
 	{
 		bossHealth -= amount;
+		HPDisplay.text = "HP: " + bossHealth;
+		
 		if (bossHealth <= (maxBossHealth * (phaseThreeThreshholdPercent/100)))
 		{
 			bossPhase = 3;
@@ -174,6 +181,7 @@ public class BossManager : MonoBehaviour
 			BossBuffs.Add(damageBuff.Name, damageBuff);
 		}
 		baseDamage += amount;
+		dmgDisplay.text = "Damage: " + baseDamage;
 	}
 	
 	void debuffPlayerDamage(int amount)
