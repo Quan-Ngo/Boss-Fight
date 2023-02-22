@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Text APText;
 
     Dictionary<string, Buff> PlayerBuffs = new Dictionary<string, Buff>();
+    private List<Buff> ExpiredBuffs = new List<Buff>();
 
 
     void Awake()
@@ -47,16 +48,16 @@ public class PlayerManager : MonoBehaviour
         AP = 5;
         APText.text = ("AP: " + AP.ToString());
 
-
+        updateBuffs();
 
         // Debug Statements
         Debug.Log("Health =" + Health.ToString());
         Debug.Log("Block = " + Block.ToString());
 
-        /*foreach (KeyValuePair<string, Buff> buff in PlayerBuffs)
+        foreach (KeyValuePair<string, Buff> buffs in PlayerBuffs)
         {
-            Debug.Log(buff.Key);
-        }*/
+            Debug.Log("Current Buffs: " + buffs.Value.Name);
+        }
     }
 
     public void attack()
@@ -162,6 +163,27 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private void updateBuffs()
+    {
+        foreach (KeyValuePair<string, Buff> buff in PlayerBuffs)
+        {
+            if (buff.Value.Duration > 1)
+            {
+                buff.Value.Duration -= 1;
+            }
+            else if (buff.Value.Duration >= 0)
+            {
+                ExpiredBuffs.Add(buff.Value);
+            }
+        }
+
+        removeBuff(ExpiredBuffs);
+        foreach (Buff buff in ExpiredBuffs)
+        {
+            Debug.Log("Expired Buffs: " + buff.Name);
+        }
+    }
+
     public void addBuff(Buff buff)
     {
         if (PlayerBuffs.ContainsKey(buff.Name))
@@ -195,6 +217,43 @@ public class PlayerManager : MonoBehaviour
                 break;
             case Stats.Lifesteal:
                 TempLifesteal += ((float) (buff.buffValue.Value)) / 100f;
+                break;
+        }
+    }
+
+    public void removeBuff(List<Buff> buffs)
+    {
+        foreach(Buff ExpiredBuff in buffs)
+        {
+            if (PlayerBuffs.ContainsKey(ExpiredBuff.Name))
+            {
+                if (PlayerBuffs[ExpiredBuff.Name].Stacks > 1)
+                {
+                    PlayerBuffs[ExpiredBuff.Name].Stacks -= 1;
+                    removeBuffFromStat(ExpiredBuff);
+
+                }
+                else if (PlayerBuffs[ExpiredBuff.Name].Stacks <= 1)
+                {
+                    PlayerBuffs.Remove(ExpiredBuff.Name);
+                    removeBuffFromStat(ExpiredBuff);
+                }
+            }
+        }
+    }
+
+    private void removeBuffFromStat(Buff buff)
+    {
+        switch (buff.buffValue.Stat)
+        {
+            case Stats.Block:
+                TempBlock -= buff.buffValue.Value;
+                break;
+            case Stats.Damage:
+                TempDamage -= buff.buffValue.Value;
+                break;
+            case Stats.Lifesteal:
+                TempLifesteal -= ((float)(buff.buffValue.Value)) / 100f;
                 break;
         }
     }

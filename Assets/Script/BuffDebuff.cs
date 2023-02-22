@@ -35,6 +35,7 @@ public class Buff
 
         buffValue = new BuffValue(stat, value);
     }
+
 }
 
 public class BuffValue
