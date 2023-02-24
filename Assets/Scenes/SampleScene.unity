@@ -355,6 +355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94fea6c5fcdb8b940a92b9cee74bb555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 976715627}
+  MaxHealth: 10
   AP: 5
   Block: 0
   Damage: 5
