@@ -1484,6 +1484,7 @@ GameObject:
   - component: {fileID: 976715626}
   - component: {fileID: 976715628}
   - component: {fileID: 976715627}
+  - component: {fileID: 976715629}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -1578,6 +1579,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &976715629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976715625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d35e649619db7234bb6d3f390c77c476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actor: 0
 --- !u!1 &980686079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,6 +2934,7 @@ GameObject:
   - component: {fileID: 1591653276}
   - component: {fileID: 1591653278}
   - component: {fileID: 1591653277}
+  - component: {fileID: 1591653279}
   m_Layer: 0
   m_Name: BossSprite
   m_TagString: Untagged
@@ -3014,6 +3029,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1591653279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591653275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d35e649619db7234bb6d3f390c77c476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actor: 1
 --- !u!1 &1663760911
 GameObject:
   m_ObjectHideFlags: 0
