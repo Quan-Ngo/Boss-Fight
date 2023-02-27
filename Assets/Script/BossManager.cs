@@ -75,14 +75,13 @@ public class BossManager : MonoBehaviour
 					phaseTwoAI();
 					break;
 				case 3:
-					phaseThreeAI();
+					StartCoroutine(phaseThreeAI());
 					break;
 			}
 		}
 		else
 		{
-			buffSelfDamage(5);
-			attackPlayer();
+			StartCoroutine(enragedAI());
 		}
 		TurnManager.Instance.changeTurn();
     }
@@ -100,7 +99,7 @@ public class BossManager : MonoBehaviour
 				attackPlayer();
 				break;
 			case 1:
-				buffSelfDamage(1);
+				StartCoroutine(buffSelfDamage(1));
 				break;
 		}
 	}
@@ -113,17 +112,25 @@ public class BossManager : MonoBehaviour
 				attackPlayer();
 				break;
 			case 1:
-				buffSelfDamage(1);
+				StartCoroutine(buffSelfDamage(1));
 				break;
 			case 2:
-				debuffPlayerDamage(1);
+				StartCoroutine(debuffPlayerDamage(1));
 				break;
 		}
 	}
 	
-	void phaseThreeAI()
+	IEnumerator phaseThreeAI()
 	{
-		buffSelfDamage(1);
+		StartCoroutine(buffSelfDamage(1));
+		yield return new WaitForSeconds(1f);
+		attackPlayer();
+	}
+	
+	IEnumerator enragedAI()
+	{
+		StartCoroutine(buffSelfDamage(5));
+		yield return new WaitForSeconds(1f);
 		attackPlayer();
 	}
 	
@@ -148,6 +155,7 @@ public class BossManager : MonoBehaviour
 	
 	public void takeDamage(int amount)
 	{
+		animator.SetTrigger("GetHit");
 		bossHealth -= amount;
 		HPDisplay.text = "HP: " + bossHealth;
 		
@@ -183,10 +191,12 @@ public class BossManager : MonoBehaviour
 		}
 	}
 	
-	void buffSelfDamage(int amount)
+	IEnumerator buffSelfDamage(int amount)
 	{
 		animator.SetTrigger("Cast");
 		Buff damageBuff = new Buff("damageBuff" ,Type.Buff, Stats.Damage, 1, -1, amount);
+		
+		yield return new WaitForSeconds(0.5f);
 		if (BossBuffs.ContainsKey(damageBuff.Name))
 		{
 			BossBuffs[damageBuff.Name].Stacks += amount;
@@ -200,9 +210,11 @@ public class BossManager : MonoBehaviour
 	}
 	
 	
-	void debuffPlayerDamage(int amount)
+	IEnumerator debuffPlayerDamage(int amount)
 	{
+		animator.SetTrigger("Cast");
 		Buff damageDebuff = new Buff("damageDebuff", Type.Debuff, Stats.Damage, -1, -1, amount);
+		yield return new WaitForSeconds(0.5f);
 		PlayerManager.Instance.addBuff(damageDebuff);
 	}
 	
