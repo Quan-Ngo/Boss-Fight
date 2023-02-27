@@ -15,11 +15,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private int Damage = 5;
     [SerializeField] private int Health = 10;
     [SerializeField] private float Lifesteal = 0f;
-	[SerializeField] private int blockGainOnAbility = 4;
+	[SerializeField] private int Defense = 4;
 
     //Player Temp Statistics
     [SerializeField] private int TempDamage = 0;
-    [SerializeField] private int TempBlock;
+    [SerializeField] private int TempDefense;
     private float TempLifesteal = 0f;
 
     //Player UI Elements
@@ -94,7 +94,7 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 2)
         {
             updateAP(-2);
-            Block = blockGainOnAbility + TempBlock; //Temporary Value for Block
+            Block = Defense + TempDefense; //Temporary Value for Block
             Debug.Log("I gained " + Block.ToString() + " Block");
         }
         else
@@ -213,7 +213,7 @@ public class PlayerManager : MonoBehaviour
         switch (buff.buffValue.Stat)
         {
             case Stats.Block:
-                TempBlock += buff.buffValue.Value * buff.Stacks;
+                TempDefense += buff.buffValue.Value * buff.Stacks;
                 break;
             case Stats.Damage:
                 TempDamage += buff.buffValue.Value * buff.Stacks;
@@ -250,7 +250,7 @@ public class PlayerManager : MonoBehaviour
         switch (buff.buffValue.Stat)
         {
             case Stats.Block:
-                TempBlock -= buff.buffValue.Value;
+                TempDefense -= buff.buffValue.Value;
                 break;
             case Stats.Damage:
                 TempDamage -= buff.buffValue.Value;
