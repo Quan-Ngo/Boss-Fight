@@ -130,9 +130,21 @@ public class BossManager : MonoBehaviour
 	
 	void attackPlayer()
 	{
-		animator.SetTrigger("Attack");
+		if (bossPhase == 3 || enraged)
+		{
+			animator.SetTrigger("AttackMagic");
+		}
+		else
+		{
+			animator.SetTrigger("Attack");
+		}
+	}
+	
+	public void dealDamage()
+	{
 		PlayerManager.Instance.takeDamage(baseDamage);
 	}
+
 	
 	public void takeDamage(int amount)
 	{
@@ -186,6 +198,7 @@ public class BossManager : MonoBehaviour
 		baseDamage += amount;
 		dmgDisplay.text = "Damage: " + baseDamage;
 	}
+	
 	
 	void debuffPlayerDamage(int amount)
 	{

@@ -63,6 +63,19 @@ public class PlayerManager : MonoBehaviour
 
     public void attack()
     {
+        if (AP >= 1) {
+            updateAP(-1);
+			animator.SetTrigger("Attack");
+            
+        }
+        else
+        {
+            Debug.Log("Not Enough AP");
+        }
+    }
+	
+	public void dealDamage()
+	{
 		int damageDealt;
 		damageDealt = Damage + TempDamage;
 		
@@ -71,23 +84,17 @@ public class PlayerManager : MonoBehaviour
 			damageDealt = 0;
 		}
 		
-        if (AP >= 1) {
-            updateAP(-1);
-			animator.SetTrigger("Attack");
-            BossManager.Instance.takeDamage(damageDealt);
-            Debug.Log("I attacked for " + (damageDealt).ToString() + " Damage");
+		BossManager.Instance.takeDamage(damageDealt);
+		Debug.Log("I attacked for " + (damageDealt).ToString() + " Damage");
 
-            if(Lifesteal + TempLifesteal > 0)
-            {
-                int DmgToHP = (int) ( (damageDealt) * (Lifesteal + TempLifesteal) );
-                heal(DmgToHP);
-            }
-        }
-        else
-        {
-            Debug.Log("Not Enough AP");
-        }
-    }
+		if(Lifesteal + TempLifesteal > 0)
+		{
+			int DmgToHP = (int) ( (damageDealt) * (Lifesteal + TempLifesteal) );
+			heal(DmgToHP);
+		}
+	}
+		
+		
 
     public void defend()
     {
