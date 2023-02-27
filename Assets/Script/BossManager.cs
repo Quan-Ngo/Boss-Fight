@@ -139,17 +139,17 @@ public class BossManager : MonoBehaviour
 		bossHealth -= amount;
 		HPDisplay.text = "HP: " + bossHealth;
 		
-		if (bossHealth <= (maxBossHealth * (phaseThreeThreshholdPercent/100)))
+		if (bossHealth <= (maxBossHealth * (phaseThreeThreshholdPercent/100)) && bossPhase < 3)
 		{
 			bossPhase = 3;
 			phaseTransition = true;
 		}
-		else if (bossHealth <= (maxBossHealth * (phaseTwoThreshholdPercent/100)))
+		else if (bossHealth <= (maxBossHealth * (phaseTwoThreshholdPercent/100)) && bossPhase < 2)
 		{
 			bossPhase = 2;
 			phaseTransition = true;
 		}
-		else if (bossHealth <= (maxBossHealth * (phaseOneThreshholdPercent/100)))
+		else if (bossHealth <= (maxBossHealth * (phaseOneThreshholdPercent/100)) && bossPhase < 1)
 		{
 			bossPhase = 1;
 			phaseTransition = true;
