@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
-    private int MaxHealth = 10;
+	public Animator animator;
+    [SerializeField] private int MaxHealth = 10;
 
     //Player Statistics
     [SerializeField] private int AP = 5;
@@ -72,6 +73,7 @@ public class PlayerManager : MonoBehaviour
 		
         if (AP >= 1) {
             updateAP(-1);
+			animator.SetTrigger("Attack");
             BossManager.Instance.takeDamage(damageDealt);
             Debug.Log("I attacked for " + (damageDealt).ToString() + " Damage");
 
@@ -139,6 +141,7 @@ public class PlayerManager : MonoBehaviour
 
     public void takeDamage(int Damage)
     {
+		animator.SetTrigger("GetHit");
         if (Block >= Damage)
         {
             Block -= Damage;

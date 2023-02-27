@@ -15,6 +15,7 @@ public class BossManager : MonoBehaviour
 	public int enrageTurn;
 	public TMP_Text HPDisplay;
 	public TMP_Text dmgDisplay;
+	public Animator animator;
 	
 	
 	[SerializeField] private int bossHealth;
@@ -129,6 +130,7 @@ public class BossManager : MonoBehaviour
 	
 	void attackPlayer()
 	{
+		animator.SetTrigger("Attack");
 		PlayerManager.Instance.takeDamage(baseDamage);
 	}
 	
@@ -171,6 +173,7 @@ public class BossManager : MonoBehaviour
 	
 	void buffSelfDamage(int amount)
 	{
+		animator.SetTrigger("Cast");
 		Buff damageBuff = new Buff("damageBuff" ,Type.Buff, Stats.Damage, 1, -1, amount);
 		if (BossBuffs.ContainsKey(damageBuff.Name))
 		{
