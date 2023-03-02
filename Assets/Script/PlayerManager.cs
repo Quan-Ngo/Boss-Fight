@@ -105,7 +105,7 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 2 && !animationLock)
         {
             updateAP(-2);
-            Block = Defense + TempDefense; //Temporary Value for Block
+            Block += Defense + TempDefense; //Temporary Value for Block
             Debug.Log("I gained " + Block.ToString() + " Block");
         }
         else
