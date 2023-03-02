@@ -199,17 +199,22 @@ public class BossManager : MonoBehaviour
 	IEnumerator changePhase()
 	{
 		phaseChangeFX.SetTrigger("Start");
-		animator.SetTrigger("Cast");
-		yield return new WaitForSeconds(0.7f);
 		switch (bossPhase)
 		{
 			case 1:
-				debuffPlayerDamage(10);
+				StartCoroutine(debuffPlayerDamage(10));
 				break;
 			case 2:
-				debuffPlayerDamage(5);
-				buffSelfDamage(5);
-				debuffPlayerBlock(2);
+				StartCoroutine(debuffPlayerBlock(2));
+				yield return new WaitForSeconds(1f);
+				StartCoroutine(buffSelfDamage(5));
+				yield return new WaitForSeconds(1f);
+				StartCoroutine(debuffPlayerDamage(5));
+				yield return new WaitForSeconds(1f);
+				break;
+			case 3:
+				StartCoroutine(debuffPlayerDamage(5));
+				yield return new WaitForSeconds(1f);
 				break;
 		}
 	}
@@ -238,12 +243,15 @@ public class BossManager : MonoBehaviour
 		animator.SetTrigger("Cast");
 		Buff damageDebuff = new Buff("damageDebuff", Type.Debuff, Stats.Damage, -1, -1, amount);
 		yield return new WaitForSeconds(0.5f);
+		Debug.Log("Debuff: " + damageDebuff);
 		PlayerManager.Instance.addBuff(damageDebuff);
 	}
 	
-	void debuffPlayerBlock(int amount)
+	IEnumerator debuffPlayerBlock(int amount)
 	{
+		animator.SetTrigger("Cast");
 		Buff blockDebuff = new Buff("blockDebuff", Type.Debuff, Stats.Block, -1, -1, amount);
+		yield return new WaitForSeconds(0.5f);
 		PlayerManager.Instance.addBuff(blockDebuff);
 	}
 }
