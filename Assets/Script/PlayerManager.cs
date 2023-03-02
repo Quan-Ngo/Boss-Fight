@@ -25,6 +25,8 @@ public class PlayerManager : MonoBehaviour
     //Player UI Elements
     [SerializeField] private Text APText;
     [SerializeField] private HealthBar HealthBar;
+	
+	private bool animationLock;
 
     Dictionary<string, Buff> PlayerBuffs = new Dictionary<string, Buff>();
     private List<Buff> ExpiredBuffs = new List<Buff>();
@@ -43,6 +45,7 @@ public class PlayerManager : MonoBehaviour
 
         HealthBar.SetMaxHealth(Health);
         Debug.Log("Block =" + Block.ToString());
+		animationLock = false;
     }
 
     public void turnStart()
@@ -64,10 +67,10 @@ public class PlayerManager : MonoBehaviour
 
     public void attack()
     {
-        if (AP >= 1) {
+        if (AP >= 1 && !animationLock) {
             updateAP(-1);
 			animator.SetTrigger("Attack");
-            
+            animationLock = true;
         }
         else
         {
@@ -99,7 +102,7 @@ public class PlayerManager : MonoBehaviour
 
     public void defend()
     {
-        if (AP >= 2)
+        if (AP >= 2 && !animationLock)
         {
             updateAP(-2);
             Block = Defense + TempDefense; //Temporary Value for Block
@@ -113,7 +116,7 @@ public class PlayerManager : MonoBehaviour
 
     public void buff()
     {
-        if (AP >= 3)
+        if (AP >= 3 && !animationLock)
         {
             updateAP(-3);
             Buff DamageBuff5 = new Buff("DamageBuff5" ,Type.Buff, Stats.Damage, 5, -1, 1);
@@ -128,7 +131,7 @@ public class PlayerManager : MonoBehaviour
 
     public void lifesteal()
     {
-        if (AP >= 3)
+        if (AP >= 3 && !animationLock)
         {
             updateAP(-3);
             Buff LifestealBuff50 = new Buff("LifestealBuff50", Type.Buff, Stats.Lifesteal, 50, 3, -1);
@@ -269,4 +272,9 @@ public class PlayerManager : MonoBehaviour
                 break;
         }
     }
+	
+	public void endAnimationLock()
+	{
+		animationLock = false;
+	}
 }

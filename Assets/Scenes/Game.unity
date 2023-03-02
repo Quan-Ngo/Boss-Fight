@@ -314,6 +314,7 @@ MonoBehaviour:
   TempDamage: 0
   TempDefense: 0
   APText: {fileID: 1741034357}
+  HealthBar: {fileID: 2053711874}
 --- !u!1 &100926497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,6 +1591,7 @@ GameObject:
   - component: {fileID: 976715628}
   - component: {fileID: 976715627}
   - component: {fileID: 976715629}
+  - component: {fileID: 976715630}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -1697,6 +1699,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actor: 0
+--- !u!114 &976715630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976715625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7e171b6b78ae84ba8f3316a0fc06b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &980686079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,7 +2554,7 @@ MonoBehaviour:
   bossHealth: 0
   bossPhase: 0
   baseDamage: 3
-  phaseTransition: 0
+  phaseTransition: 1
   enraged: 0
 --- !u!1 &1472312295
 GameObject:
