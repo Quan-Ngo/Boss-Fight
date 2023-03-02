@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
 
     //Player UI Elements
     [SerializeField] private Text APText;
+    [SerializeField] private HealthBar HealthBar;
 
     Dictionary<string, Buff> PlayerBuffs = new Dictionary<string, Buff>();
     private List<Buff> ExpiredBuffs = new List<Buff>();
@@ -40,7 +41,7 @@ public class PlayerManager : MonoBehaviour
             Destroy(this);
         }
 
-        Debug.Log("Health =" + Health.ToString());
+        HealthBar.SetMaxHealth(Health);
         Debug.Log("Block =" + Block.ToString());
     }
 
@@ -158,6 +159,7 @@ public class PlayerManager : MonoBehaviour
             Damage -= Block;
             Block = 0;
             Health -= Damage;
+            HealthBar.SetHealth(Health);
         }
     }
 
