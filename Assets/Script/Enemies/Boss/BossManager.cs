@@ -16,6 +16,7 @@ public class BossManager : MonoBehaviour
 	public TMP_Text HPDisplay;
 	public TMP_Text dmgDisplay;
 	public Animator animator;
+	public Animator phaseChangeFX;
 	
 	
 	[SerializeField] private int bossHealth;
@@ -57,67 +58,82 @@ public class BossManager : MonoBehaviour
 		
 		if (!enraged)
 		{
-			if (phaseTransition == true)
-			{
-				changePhase();
-				phaseTransition = false;
-			}
-			
-			switch (bossPhase)
-			{
-				case 0:
-					phaseZeroAI();
-					break;
-				case 1:
-					phaseOneAI();
-					break;
-				case 2:
-					phaseTwoAI();
-					break;
-				case 3:
-					StartCoroutine(phaseThreeAI());
-					break;
-			}
+			StartCoroutine(normalAI());
 		}
 		else
 		{
 			StartCoroutine(enragedAI());
-		}
-		TurnManager.Instance.changeTurn();
+		}	
     }
+	
+	IEnumerator normalAI()
+	{
+		if (phaseTransition == true)
+		{
+			StartCoroutine(changePhase());
+			phaseTransition = false;
+			yield return new WaitForSeconds(1.7f);
+		}
+		
+		switch (bossPhase)
+		{
+			case 0:
+				StartCoroutine(phaseZeroAI());
+				break;
+			case 1:
+				StartCoroutine(phaseOneAI());
+				break;
+			case 2:
+				StartCoroutine(phaseTwoAI());
+				break;
+			case 3:
+				StartCoroutine(phaseThreeAI());
+				break;
+		}
+	}
 
-	void phaseZeroAI()
+
+	IEnumerator phaseZeroAI()
 	{
 		attackPlayer();
+		yield return new WaitForSeconds(1.2f);
+		TurnManager.Instance.changeTurn();
 	}
 	
-	void phaseOneAI()
+	IEnumerator phaseOneAI()
 	{
 		switch (Random.Range(0, 2))
 		{
 			case 0:
 				attackPlayer();
+				yield return new WaitForSeconds(1.2f);
 				break;
 			case 1:
 				StartCoroutine(buffSelfDamage(1));
+				yield return new WaitForSeconds(1f);
 				break;
 		}
+		TurnManager.Instance.changeTurn();
 	}
 	
-	void phaseTwoAI()
+	IEnumerator phaseTwoAI()
 	{
 		switch (Random.Range(0, 3))
 		{
 			case 0:
 				attackPlayer();
+				yield return new WaitForSeconds(1.2f);
 				break;
 			case 1:
 				StartCoroutine(buffSelfDamage(1));
+				yield return new WaitForSeconds(1f);
 				break;
 			case 2:
 				StartCoroutine(debuffPlayerDamage(1));
+				yield return new WaitForSeconds(1f);
 				break;
 		}
+		TurnManager.Instance.changeTurn();
 	}
 	
 	IEnumerator phaseThreeAI()
@@ -125,6 +141,8 @@ public class BossManager : MonoBehaviour
 		StartCoroutine(buffSelfDamage(1));
 		yield return new WaitForSeconds(1f);
 		attackPlayer();
+		yield return new WaitForSeconds(1.2f);
+		TurnManager.Instance.changeTurn();
 	}
 	
 	IEnumerator enragedAI()
@@ -132,6 +150,8 @@ public class BossManager : MonoBehaviour
 		StartCoroutine(buffSelfDamage(5));
 		yield return new WaitForSeconds(1f);
 		attackPlayer();
+		yield return new WaitForSeconds(1.2f);
+		TurnManager.Instance.changeTurn();
 	}
 	
 	
@@ -176,17 +196,25 @@ public class BossManager : MonoBehaviour
 		}
 	}
 	
-	void changePhase()
+	IEnumerator changePhase()
 	{
+		phaseChangeFX.SetTrigger("Start");
 		switch (bossPhase)
 		{
 			case 1:
-				debuffPlayerDamage(10);
+				StartCoroutine(debuffPlayerDamage(10));
 				break;
 			case 2:
-				debuffPlayerDamage(5);
-				buffSelfDamage(5);
-				debuffPlayerBlock(2);
+				StartCoroutine(debuffPlayerBlock(2));
+				yield return new WaitForSeconds(1f);
+				StartCoroutine(buffSelfDamage(5));
+				yield return new WaitForSeconds(1f);
+				StartCoroutine(debuffPlayerDamage(5));
+				yield return new WaitForSeconds(1f);
+				break;
+			case 3:
+				StartCoroutine(debuffPlayerDamage(5));
+				yield return new WaitForSeconds(1f);
 				break;
 		}
 	}
@@ -215,12 +243,15 @@ public class BossManager : MonoBehaviour
 		animator.SetTrigger("Cast");
 		Buff damageDebuff = new Buff("damageDebuff", Type.Debuff, Stats.Damage, -1, -1, amount);
 		yield return new WaitForSeconds(0.5f);
+		Debug.Log("Debuff: " + damageDebuff);
 		PlayerManager.Instance.addBuff(damageDebuff);
 	}
 	
-	void debuffPlayerBlock(int amount)
+	IEnumerator debuffPlayerBlock(int amount)
 	{
+		animator.SetTrigger("Cast");
 		Buff blockDebuff = new Buff("blockDebuff", Type.Debuff, Stats.Block, -1, -1, amount);
+		yield return new WaitForSeconds(0.5f);
 		PlayerManager.Instance.addBuff(blockDebuff);
 	}
 }
