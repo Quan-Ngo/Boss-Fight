@@ -8,18 +8,18 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
 	public Animator animator;
     [SerializeField] private int MaxHealth = 10;
+    private int Health = 10;
 
     //Player Statistics
     [SerializeField] private int AP = 5;
     [SerializeField] private int Block = 0;
     [SerializeField] private int Damage = 5;
-    [SerializeField] private int Health = 10;
     [SerializeField] private float Lifesteal = 0f;
 	[SerializeField] private int Defense = 4;
 
     //Player Temp Statistics
-    [SerializeField] private int TempDamage = 0;
-    [SerializeField] private int TempDefense;
+    private int TempDamage = 0;
+    private int TempDefense;
     private float TempLifesteal = 0f;
 
     //Player UI Elements
@@ -98,8 +98,6 @@ public class PlayerManager : MonoBehaviour
 		}
 	}
 		
-		
-
     public void defend()
     {
         if (AP >= 2 && !animationLock)
@@ -176,6 +174,8 @@ public class PlayerManager : MonoBehaviour
         {
             Health += amount;
         }
+
+        HealthBar.SetHealth(Health);
     }
 
     private void updateBuffs()

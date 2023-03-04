@@ -6,8 +6,8 @@ using TMPro;
 
 public class BuffIconDisplay : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro StackCount;
-    [SerializeField] private TextMeshPro DurationCount;
+    [SerializeField] private GameObject StackCount;
+    [SerializeField] private GameObject DurationCount;
 
 
 }
