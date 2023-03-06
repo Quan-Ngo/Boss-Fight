@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
-	public Animator animator;
+	
+    public Animator animator;
+    [SerializeField] private BuffManager BuffManager;
+
     [SerializeField] private int MaxHealth = 10;
     private int Health = 10;
 
@@ -29,7 +32,6 @@ public class PlayerManager : MonoBehaviour
 	private bool animationLock;
 
     Dictionary<string, Buff> PlayerBuffs = new Dictionary<string, Buff>();
-    private List<Buff> ExpiredBuffs = new List<Buff>();
 
 
     void Awake()
@@ -53,10 +55,9 @@ public class PlayerManager : MonoBehaviour
         AP = 5;
         APText.text = ("AP: " + AP.ToString());
 
-        updateBuffs();
+        BuffManager.updateBuffs();
 
         // Debug Statements
-        Debug.Log("Health =" + Health.ToString());
         Debug.Log("Block = " + Block.ToString());
 
         foreach (KeyValuePair<string, Buff> buffs in PlayerBuffs)
@@ -118,7 +119,7 @@ public class PlayerManager : MonoBehaviour
         {
             updateAP(-3);
             Buff DamageBuff5 = new Buff("DamageBuff5" ,Type.Buff, Stats.Damage, 5, -1, 1);
-            addBuff(DamageBuff5);
+            BuffManager.addBuff(DamageBuff5);
             Debug.Log("I Gained a Damage Buff of " + DamageBuff5.buffValue.Value);
         }
         else
@@ -133,7 +134,7 @@ public class PlayerManager : MonoBehaviour
         {
             updateAP(-3);
             Buff LifestealBuff50 = new Buff("LifestealBuff50", Type.Buff, Stats.Lifesteal, 50, 3, -1);
-            addBuff(LifestealBuff50);
+            BuffManager.addBuff(LifestealBuff50);
             Debug.Log("I Gained a Lifesteal Buff of " + LifestealBuff50.buffValue.Value + "%");
         }
         else
@@ -178,49 +179,17 @@ public class PlayerManager : MonoBehaviour
         HealthBar.SetHealth(Health);
     }
 
-    private void updateBuffs()
-    {
-        foreach (KeyValuePair<string, Buff> buff in PlayerBuffs)
-        {
-            if (buff.Value.Duration > 1)
-            {
-                buff.Value.Duration -= 1;
-            }
-            else if (buff.Value.Duration >= 0)
-            {
-                ExpiredBuffs.Add(buff.Value);
-            }
-        }
-
-        removeBuff(ExpiredBuffs);
-        foreach (Buff buff in ExpiredBuffs)
-        {
-            Debug.Log("Expired Buffs: " + buff.Name);
-        }
-    }
-
     public void addBuff(Buff buff)
     {
-        if (PlayerBuffs.ContainsKey(buff.Name))
-        {
-            if (buff.Stacks >= 1)
-            {
-                PlayerBuffs[buff.Name].Stacks += buff.Stacks;
-                addBuffToStat(buff);
-            }
-            else
-            {
-                PlayerBuffs[buff.Name].Duration = buff.Duration;
-            }
-        }
-        else
-        {
-            PlayerBuffs.Add(buff.Name, buff);
-            addBuffToStat(buff);
-        }
+        BuffManager.addBuff(buff);
     }
 
-    private void addBuffToStat(Buff buff)
+    public void removeBuff(Buff buff)
+    {
+        BuffManager.removeBuff(buff);
+    }
+
+    public void addStatBuff(Buff buff)
     {
         switch (buff.buffValue.Stat)
         {
@@ -236,44 +205,23 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void removeBuff(List<Buff> buffs)
-    {
-        foreach(Buff ExpiredBuff in buffs)
-        {
-            if (PlayerBuffs.ContainsKey(ExpiredBuff.Name))
-            {
-                if (PlayerBuffs[ExpiredBuff.Name].Stacks > 1)
-                {
-                    PlayerBuffs[ExpiredBuff.Name].Stacks -= 1;
-                    removeBuffFromStat(ExpiredBuff);
-
-                }
-                else if (PlayerBuffs[ExpiredBuff.Name].Stacks <= 1)
-                {
-                    PlayerBuffs.Remove(ExpiredBuff.Name);
-                    removeBuffFromStat(ExpiredBuff);
-                }
-            }
-        }
-    }
-
-    private void removeBuffFromStat(Buff buff)
+    public void removeStatBuff(Buff buff)
     {
         switch (buff.buffValue.Stat)
         {
             case Stats.Block:
-                TempDefense -= buff.buffValue.Value;
+                TempDefense -= buff.buffValue.Value * buff.Stacks;
                 break;
             case Stats.Damage:
-                TempDamage -= buff.buffValue.Value;
+                TempDamage -= buff.buffValue.Value * buff.Stacks;
                 break;
             case Stats.Lifesteal:
                 TempLifesteal -= ((float)(buff.buffValue.Value)) / 100f;
                 break;
         }
     }
-	
-	public void endAnimationLock()
+
+    public void endAnimationLock()
 	{
 		animationLock = false;
 	}
