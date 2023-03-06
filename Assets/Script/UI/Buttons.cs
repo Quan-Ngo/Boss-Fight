@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Buttons : MonoBehaviour
 {
+	public Animator sceneFade;
+	
     bool isPlayerTurn()
 	{
 		return TurnManager.Instance.checkIsPlayerTurn();
@@ -63,5 +65,10 @@ public class Buttons : MonoBehaviour
 		{
 			Debug.Log("Not your turn");
 		}
+	}
+	
+	public void startGame()
+	{
+		sceneFade.SetTrigger("FadeOut");
 	}
 }
