@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Defeat.unity
+    guid: 60e691bfc24f85742bd0a6fea49607f9
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity
+    guid: 022932e71abaccb409a5bc29a786c349
   m_configObjects: {}

@@ -69,8 +69,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (AP >= 1 && !animationLock) {
             updateAP(-1);
-			animator.SetTrigger("Attack");
-            animationLock = true;
+			playAnimationClip("attack");
         }
         else
         {
@@ -117,6 +116,7 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 3 && !animationLock)
         {
             updateAP(-3);
+			playAnimationClip("buff");
             Buff DamageBuff5 = new Buff("DamageBuff5" ,Type.Buff, Stats.Damage, 5, -1, 1);
             addBuff(DamageBuff5);
             Debug.Log("I Gained a Damage Buff of " + DamageBuff5.buffValue.Value);
@@ -132,6 +132,7 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 3 && !animationLock)
         {
             updateAP(-3);
+			playAnimationClip("buff");
             Buff LifestealBuff50 = new Buff("LifestealBuff50", Type.Buff, Stats.Lifesteal, 50, 3, -1);
             addBuff(LifestealBuff50);
             Debug.Log("I Gained a Lifesteal Buff of " + LifestealBuff50.buffValue.Value + "%");
@@ -162,6 +163,11 @@ public class PlayerManager : MonoBehaviour
             Health -= Damage;
             HealthBar.SetHealth(Health);
         }
+		
+		if (Health <= 0)
+		{
+			GameStateManager.instance.playerDied();
+		}
     }
 
     public void heal(int amount)
@@ -276,5 +282,20 @@ public class PlayerManager : MonoBehaviour
 	public void endAnimationLock()
 	{
 		animationLock = false;
+	}
+	
+	private void playAnimationClip(string animationToPlay)
+	{
+		animationLock = true;
+		
+		switch (animationToPlay)
+		{
+			case "attack":
+				animator.SetTrigger("Attack");
+				break;
+			case "buff":
+				animator.SetTrigger("Buff");
+				break;
+		}
 	}
 }

@@ -179,7 +179,11 @@ public class BossManager : MonoBehaviour
 		bossHealth -= amount;
 		HPDisplay.text = "HP: " + bossHealth;
 		
-		if (bossHealth <= (maxBossHealth * (phaseThreeThreshholdPercent/100)) && bossPhase < 3)
+		if (bossHealth <= 0)
+		{
+			GameStateManager.instance.bossDied();
+		}
+		else if (bossHealth <= (maxBossHealth * (phaseThreeThreshholdPercent/100)) && bossPhase < 3)
 		{
 			bossPhase = 3;
 			phaseTransition = true;

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Buttons : MonoBehaviour
-{
-	public Animator sceneFade;
-	
+{	
     bool isPlayerTurn()
 	{
 		return TurnManager.Instance.checkIsPlayerTurn();
@@ -69,6 +67,6 @@ public class Buttons : MonoBehaviour
 	
 	public void startGame()
 	{
-		sceneFade.SetTrigger("FadeOut");
+		changeScene.instance.gameScene();
 	}
 }
