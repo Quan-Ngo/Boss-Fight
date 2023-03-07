@@ -13,6 +13,8 @@ public class BuffManager : MonoBehaviour
     private Dictionary<string, Buff> ActiveBuffs = new Dictionary<string, Buff>();
     private List<Buff> ExpiredBuffs = new List<Buff>();
 
+    private List<GameObject> BuffIcons = new List<GameObject>();
+
     public void Start()
     {
         EntityManager = Entity.GetComponent<PlayerManager>();
@@ -90,7 +92,13 @@ public class BuffManager : MonoBehaviour
     private void createIcon(Buff buff)
     {
         GameObject buffIcon = Instantiate(BuffPrefab, Vector3.zero, Quaternion.identity, this.gameObject.transform);
-        buffIcon.transform.localPosition = Vector3.zero;
+
+        int offset = BuffIcons.Count * 70;
+        buffIcon.transform.localPosition = new Vector3(offset, 0, 0);
+
+
         buffIcon.GetComponent<BuffIcon>().CreateIcon(Sprite[0], 1, 3);
+
+        BuffIcons.Add(buffIcon);
     }
 }
