@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Buttons : MonoBehaviour
-{
+{	
     bool isPlayerTurn()
 	{
 		return TurnManager.Instance.checkIsPlayerTurn();
@@ -63,5 +63,10 @@ public class Buttons : MonoBehaviour
 		{
 			Debug.Log("Not your turn");
 		}
+	}
+	
+	public void startGame()
+	{
+		changeScene.instance.gameScene();
 	}
 }
