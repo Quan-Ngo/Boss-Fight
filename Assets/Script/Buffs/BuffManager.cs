@@ -96,9 +96,28 @@ public class BuffManager : MonoBehaviour
         int offset = BuffIcons.Count * 70;
         buffIcon.transform.localPosition = new Vector3(offset, 0, 0);
 
-
-        buffIcon.GetComponent<BuffIcon>().CreateIcon(Sprite[0], 1, 3);
-
+        int imageIndex = 0;
+        switch (buff.buffValue.Stat)
+        {
+            case Stats.Block:
+                imageIndex = 3;
+                break;
+            case Stats.Damage:
+                if(buff.Type == Type.Buff)
+                {
+                    imageIndex = 0;
+                }
+                else if (buff.Type == Type.Debuff)
+                {
+                    imageIndex = 2;
+                }
+                break;
+            case Stats.Lifesteal:
+                imageIndex = 1;
+                break;
+        }
+        
+        buffIcon.GetComponent<BuffIcon>().CreateIcon(Sprite[imageIndex], buff.Stacks, buff.Duration);
         BuffIcons.Add(buffIcon);
     }
 }

@@ -14,11 +14,13 @@ public class BuffIcon : MonoBehaviour
     {
         BuffImage.sprite = sprite;
         StackCount.text = "" + Stacks;
-        DurationCount.text = "" + Duration;
-    }
-
-    private void Start()
-    {
-        
+        if (Duration == -1)
+        {
+            DurationCount.enabled = false;
+        }
+        else
+        {
+            DurationCount.text = "" + Duration;
+        }
     }
 }
