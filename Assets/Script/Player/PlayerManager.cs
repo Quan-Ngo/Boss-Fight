@@ -59,11 +59,6 @@ public class PlayerManager : MonoBehaviour
 
         // Debug Statements
         Debug.Log("Block = " + Block.ToString());
-
-        foreach (KeyValuePair<string, Buff> buffs in PlayerBuffs)
-        {
-            Debug.Log("Current Buffs: " + buffs.Value.Name);
-        }
     }
 
     public void attack()

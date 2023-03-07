@@ -5,7 +5,10 @@ using UnityEngine;
 public class BuffManager : MonoBehaviour
 {
     [SerializeField] private GameObject Entity;
-    [SerializeField] private PlayerManager EntityManager = null;
+    private PlayerManager EntityManager = null;
+
+    [SerializeField] private Sprite[] Sprite;
+    [SerializeField] private GameObject BuffPrefab;
 
     private Dictionary<string, Buff> ActiveBuffs = new Dictionary<string, Buff>();
     private List<Buff> ExpiredBuffs = new List<Buff>();
@@ -52,6 +55,7 @@ public class BuffManager : MonoBehaviour
         else
         {
             ActiveBuffs.Add(buff.Name, buff);
+            createIcon(buff);
             applyBuff(buff);
         }
     }
@@ -83,4 +87,10 @@ public class BuffManager : MonoBehaviour
         EntityManager.removeStatBuff(buff);
     }
 
+    private void createIcon(Buff buff)
+    {
+        GameObject buffIcon = Instantiate(BuffPrefab, Vector3.zero, Quaternion.identity, this.gameObject.transform);
+        buffIcon.transform.localPosition = Vector3.zero;
+        buffIcon.GetComponent<BuffIcon>().CreateIcon(Sprite[0], 1, 3);
+    }
 }
