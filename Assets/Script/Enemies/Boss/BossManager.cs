@@ -8,13 +8,12 @@ using TMPro;
 public class BossManager : MonoBehaviour
 {
     public static BossManager Instance;
+
 	public float phaseOneThreshholdPercent;
 	public float phaseTwoThreshholdPercent;
 	public float phaseThreeThreshholdPercent;
 	public int maxBossHealth;
 	public int enrageTurn;
-	public TMP_Text HPDisplay;
-	public TMP_Text dmgDisplay;
 	public Animator animator;
 	public Animator phaseChangeFX;
 	
@@ -24,7 +23,10 @@ public class BossManager : MonoBehaviour
 	[SerializeField] private int baseDamage;
 	[SerializeField] private bool phaseTransition;
 	[SerializeField] private bool enraged;
-	
+
+	[SerializeField] private HealthBar healthBar;
+	[SerializeField] private GameObject buffIcon;
+
 	Dictionary<string, Buff> BossBuffs = new Dictionary<string, Buff>();
 	
 	
@@ -32,9 +34,9 @@ public class BossManager : MonoBehaviour
 	{
 		bossPhase = 0;
 		bossHealth = maxBossHealth;
+		healthBar.SetMaxHealth(maxBossHealth);
+		buffIcon.SetActive(false);
 		phaseTransition = false;
-		HPDisplay.text = "HP: " + bossHealth;
-		dmgDisplay.text = "Damage: " + baseDamage;
 	}
 	
     void Awake()
@@ -177,8 +179,8 @@ public class BossManager : MonoBehaviour
 	{
 		animator.SetTrigger("GetHit");
 		bossHealth -= amount;
-		HPDisplay.text = "HP: " + bossHealth;
-		
+		healthBar.SetHealth(bossHealth);
+
 		if (bossHealth <= 0)
 		{
 			GameStateManager.instance.bossDied();
@@ -232,15 +234,15 @@ public class BossManager : MonoBehaviour
 		if (BossBuffs.ContainsKey(damageBuff.Name))
 		{
 			BossBuffs[damageBuff.Name].Stacks += amount;
+			buffIcon.GetComponent<BuffIcon>().updateIconStacks(BossBuffs[damageBuff.Name].Stacks);
 		}
 		else 
 		{
 			BossBuffs.Add(damageBuff.Name, damageBuff);
+			buffIcon.SetActive(true);
 		}
 		baseDamage += amount;
-		dmgDisplay.text = "Damage: " + baseDamage;
 	}
-	
 	
 	IEnumerator debuffPlayerDamage(int amount)
 	{

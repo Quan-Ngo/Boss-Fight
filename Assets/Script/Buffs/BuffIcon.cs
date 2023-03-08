@@ -32,4 +32,14 @@ public class BuffIcon : MonoBehaviour
             DurationCount.text = "" + Duration;
         }
     }
+
+    public void updateIconStacks(int stacks)
+    {
+        StackCount.text = "" + stacks;
+    }
+
+    public void updateIconDuration(int duration)
+    {
+        DurationCount.text = "" + duration;
+    }
 }
