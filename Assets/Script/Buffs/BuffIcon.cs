@@ -6,14 +6,23 @@ using TMPro;
 
 public class BuffIcon : MonoBehaviour
 {
-    [SerializeField] private Text StackCount;
-    [SerializeField] private Text DurationCount;
-    [SerializeField] private Image BuffImage;
+    public Text StackCount;
+    public Text DurationCount;
+    public Image BuffImage;
 
     public void CreateIcon(Sprite sprite, int Stacks, int Duration)
     {
         BuffImage.sprite = sprite;
-        StackCount.text = "" + Stacks;
+
+        if (Stacks == -1)
+        {
+            StackCount.enabled = false;
+        }
+        else
+        {
+            StackCount.text = "" + Stacks;
+        }
+
         if (Duration == -1)
         {
             DurationCount.enabled = false;

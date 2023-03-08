@@ -13,7 +13,7 @@ public class BuffManager : MonoBehaviour
     private Dictionary<string, Buff> ActiveBuffs = new Dictionary<string, Buff>();
     private List<Buff> ExpiredBuffs = new List<Buff>();
 
-    private List<GameObject> BuffIcons = new List<GameObject>();
+    private Dictionary<string, GameObject> BuffIcons = new Dictionary<string, GameObject>();
 
     public void Start()
     {
@@ -27,6 +27,7 @@ public class BuffManager : MonoBehaviour
             if (buff.Value.Duration > 1)
             {
                 buff.Value.Duration -= 1;
+                updateIconDuration(buff.Value);
             }
             else if (buff.Value.Duration >= 0)
             {
@@ -47,17 +48,19 @@ public class BuffManager : MonoBehaviour
             if (buff.Stacks >= 1)
             {
                 ActiveBuffs[buff.Name].Stacks += buff.Stacks;
+                updateIconStacks(buff);
                 applyBuff(buff);
             }
             else
             {
                 ActiveBuffs[buff.Name].Duration = buff.Duration;
+                updateIconDuration(buff);
             }
         }
         else
         {
-            ActiveBuffs.Add(buff.Name, buff);
             createIcon(buff);
+            ActiveBuffs.Add(buff.Name, buff);
             applyBuff(buff);
         }
     }
@@ -69,11 +72,13 @@ public class BuffManager : MonoBehaviour
             if (ActiveBuffs[buff.Name].Stacks > 1)
             {
                 ActiveBuffs[buff.Name].Stacks -= 1;
+                updateIconStacks(buff);
                 killBuff(buff);
             }
             else if (ActiveBuffs[buff.Name].Stacks <= 1)
             {
                 ActiveBuffs.Remove(buff.Name);
+                removeIcon(buff);
                 killBuff(buff);
             }
         }
@@ -100,7 +105,14 @@ public class BuffManager : MonoBehaviour
         switch (buff.buffValue.Stat)
         {
             case Stats.Block:
-                imageIndex = 3;
+                if (buff.Type == Type.Buff)
+                {
+                    imageIndex = 3;
+                }
+                else if (buff.Type == Type.Debuff)
+                {
+                    imageIndex = 2;
+                }
                 break;
             case Stats.Damage:
                 if(buff.Type == Type.Buff)
@@ -109,15 +121,40 @@ public class BuffManager : MonoBehaviour
                 }
                 else if (buff.Type == Type.Debuff)
                 {
-                    imageIndex = 2;
+                    imageIndex = 4;
                 }
                 break;
             case Stats.Lifesteal:
                 imageIndex = 1;
                 break;
         }
-        
+
         buffIcon.GetComponent<BuffIcon>().CreateIcon(Sprite[imageIndex], buff.Stacks, buff.Duration);
-        BuffIcons.Add(buffIcon);
+        BuffIcons.Add(buff.Name, buffIcon);
+    }
+
+    private void updateIconStacks(Buff buff)
+    {
+        BuffIcons[buff.Name].GetComponent<BuffIcon>().StackCount.text = "" + ActiveBuffs[buff.Name].Stacks;
+    }
+
+    private void updateIconDuration(Buff buff)
+    {
+        BuffIcons[buff.Name].GetComponent<BuffIcon>().DurationCount.text = "" + ActiveBuffs[buff.Name].Duration;
+    }
+
+    private void removeIcon(Buff buff)
+    {
+        Destroy(BuffIcons[buff.Name]);
+        BuffIcons.Remove(buff.Name);
+
+        int index = 0;
+        foreach (KeyValuePair<string, GameObject> buffIcon in BuffIcons)
+        {
+            int offset = index * 70;
+            buffIcon.Value.transform.localPosition = new Vector3(offset, 0, 0);
+
+            index += 1;
+        }
     }
 }
