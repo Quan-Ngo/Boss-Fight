@@ -26,6 +26,7 @@ public class BossManager : MonoBehaviour
 	[SerializeField] private bool enraged;
 
 	[SerializeField] private HealthBar HealthBar;
+	[SerializeField] private GameObject BuffIcon;
 
 	Dictionary<string, Buff> BossBuffs = new Dictionary<string, Buff>();
 	
@@ -240,7 +241,6 @@ public class BossManager : MonoBehaviour
 		}
 		baseDamage += amount;
 	}
-	
 	
 	IEnumerator debuffPlayerDamage(int amount)
 	{

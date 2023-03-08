@@ -27,7 +27,7 @@ public class BuffManager : MonoBehaviour
             if (buff.Value.Duration > 1)
             {
                 buff.Value.Duration -= 1;
-                updateIconDuration(buff.Value);
+                BuffIcons[buff.Value.Name].GetComponent<BuffIcon>().updateIconDuration(ActiveBuffs[buff.Value.Name].Duration);
             }
             else if (buff.Value.Duration >= 0)
             {
@@ -48,13 +48,13 @@ public class BuffManager : MonoBehaviour
             if (buff.Stacks >= 1)
             {
                 ActiveBuffs[buff.Name].Stacks += buff.Stacks;
-                updateIconStacks(buff);
+                BuffIcons[buff.Name].GetComponent<BuffIcon>().updateIconStacks(ActiveBuffs[buff.Name].Stacks);
                 applyBuff(buff);
             }
             else
             {
                 ActiveBuffs[buff.Name].Duration = buff.Duration;
-                updateIconDuration(buff);
+                BuffIcons[buff.Name].GetComponent<BuffIcon>().updateIconDuration(ActiveBuffs[buff.Name].Duration);
             }
         }
         else
@@ -72,7 +72,7 @@ public class BuffManager : MonoBehaviour
             if (ActiveBuffs[buff.Name].Stacks > 1)
             {
                 ActiveBuffs[buff.Name].Stacks -= 1;
-                updateIconStacks(buff);
+                BuffIcons[buff.Name].GetComponent<BuffIcon>().updateIconStacks(ActiveBuffs[buff.Name].Stacks);
                 killBuff(buff);
             }
             else if (ActiveBuffs[buff.Name].Stacks <= 1)
@@ -131,16 +131,6 @@ public class BuffManager : MonoBehaviour
 
         buffIcon.GetComponent<BuffIcon>().CreateIcon(Sprite[imageIndex], buff.Stacks, buff.Duration);
         BuffIcons.Add(buff.Name, buffIcon);
-    }
-
-    private void updateIconStacks(Buff buff)
-    {
-        BuffIcons[buff.Name].GetComponent<BuffIcon>().StackCount.text = "" + ActiveBuffs[buff.Name].Stacks;
-    }
-
-    private void updateIconDuration(Buff buff)
-    {
-        BuffIcons[buff.Name].GetComponent<BuffIcon>().DurationCount.text = "" + ActiveBuffs[buff.Name].Duration;
     }
 
     private void removeIcon(Buff buff)
