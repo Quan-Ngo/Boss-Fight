@@ -10,12 +10,12 @@ public class PlayerManager : MonoBehaviour
     public Animator animator;
     [SerializeField] private BuffManager BuffManager;
 
-    [SerializeField] private int MaxHealth = 10;
-    private int Health = 10;
+    [SerializeField] private int MaxHealth = 50;
+    private int Health = 50;
+    private int Block = 0;
 
     //Player Statistics
     [SerializeField] private int AP = 5;
-    [SerializeField] private int Block = 0;
     [SerializeField] private int Damage = 5;
     [SerializeField] private float Lifesteal = 0f;
 	[SerializeField] private int Defense = 4;
@@ -30,8 +30,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private HealthBar HealthBar;
 	
 	private bool animationLock;
-
-    Dictionary<string, Buff> PlayerBuffs = new Dictionary<string, Buff>();
 
 
     void Awake()
