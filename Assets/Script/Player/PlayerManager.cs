@@ -113,9 +113,9 @@ public class PlayerManager : MonoBehaviour
         {
             updateAP(-3);
 			playAnimationClip("buff");
-            Buff DamageBuff5 = new Buff("DamageBuff5" ,Type.Buff, Stats.Damage, 5, -1, 1);
-            BuffManager.addBuff(DamageBuff5);
-            Debug.Log("I Gained a Damage Buff of " + DamageBuff5.buffValue.Value);
+            Buff DamageBuff = new Buff("DamageBuff" ,Type.Buff, Stats.Damage, 1, -1, 1);
+            BuffManager.addBuff(DamageBuff);
+            Debug.Log("I Gained a Damage Buff of " + DamageBuff.buffValue.Value);
         }
         else
         {
@@ -129,9 +129,9 @@ public class PlayerManager : MonoBehaviour
         {
             updateAP(-3);
 			playAnimationClip("buff");
-            Buff LifestealBuff50 = new Buff("LifestealBuff50", Type.Buff, Stats.Lifesteal, 50, 3, -1);
-            BuffManager.addBuff(LifestealBuff50);
-            Debug.Log("I Gained a Lifesteal Buff of " + LifestealBuff50.buffValue.Value + "%");
+            Buff LifestealBuff = new Buff("LifestealBuff", Type.Buff, Stats.Lifesteal, 20, 3, -1);
+            BuffManager.addBuff(LifestealBuff);
+            Debug.Log("I Gained a Lifesteal Buff of " + LifestealBuff.buffValue.Value + "%");
         }
         else
         {

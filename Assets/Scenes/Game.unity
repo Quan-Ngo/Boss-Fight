@@ -1219,7 +1219,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -2682,8 +2682,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1396820674}
-  - component: {fileID: 1396820673}
-  - component: {fileID: 1396820672}
   - component: {fileID: 1396820675}
   m_Layer: 0
   m_Name: Boss
@@ -2692,56 +2690,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!23 &1396820672
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1396820670}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1396820673
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1396820670}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1396820674
 Transform:
   m_ObjectHideFlags: 0
@@ -3827,9 +3775,10 @@ MonoBehaviour:
   Entity: {fileID: 89609652}
   Sprite:
   - {fileID: 21300000, guid: 2a5c892bdd014164da633b8c6fd0f246, type: 3}
-  - {fileID: 21300000, guid: ee40d72ece864764f9d17d015aedb524, type: 3}
-  - {fileID: 21300000, guid: eed44235dcbd621438f7c0c4f05e2356, type: 3}
+  - {fileID: 21300000, guid: bb67b03c2969d104caba950c446f8c8d, type: 3}
+  - {fileID: 21300000, guid: bbe833a9207e7fa41bbd3ce71ad09605, type: 3}
   - {fileID: 21300000, guid: f6b8b85cbdc82ce439a41ae3d56d57ee, type: 3}
+  - {fileID: 21300000, guid: eed44235dcbd621438f7c0c4f05e2356, type: 3}
   BuffPrefab: {fileID: 7035143012191692024, guid: b592b0ad2e72fa241b1ed5009a933236, type: 3}
 --- !u!1 &1734516096
 GameObject:
@@ -5683,7 +5632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
       propertyPath: m_AnchorMax.x
