@@ -107,9 +107,9 @@ public class PlayerManager : MonoBehaviour
 
     public void buff()
     {
-        if (AP >= 3 && !animationLock)
+        if (AP >= 2 && !animationLock)
         {
-            updateAP(-3);
+            updateAP(-2);
 			playAnimationClip("buff");
             Buff DamageBuff = new Buff("DamageBuff" ,Type.Buff, Stats.Damage, 1, -1, 1);
             BuffManager.addBuff(DamageBuff);

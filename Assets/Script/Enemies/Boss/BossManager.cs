@@ -104,13 +104,17 @@ public class BossManager : MonoBehaviour
 	
 	IEnumerator phaseOneAI()
 	{
-		switch (Random.Range(0, 2))
+		switch (Random.Range(0, 3))
 		{
 			case 0:
 				attackPlayer();
 				yield return new WaitForSeconds(1.2f);
 				break;
 			case 1:
+				attackPlayer();
+				yield return new WaitForSeconds(1.2f);
+				break;
+			case 2:
 				StartCoroutine(buffSelfDamage(1));
 				yield return new WaitForSeconds(1f);
 				break;
@@ -120,17 +124,21 @@ public class BossManager : MonoBehaviour
 	
 	IEnumerator phaseTwoAI()
 	{
-		switch (Random.Range(0, 3))
+		switch (Random.Range(0, 4))
 		{
 			case 0:
 				attackPlayer();
 				yield return new WaitForSeconds(1.2f);
 				break;
 			case 1:
+				attackPlayer();
+				yield return new WaitForSeconds(1.2f);
+				break;
+			case 2:
 				StartCoroutine(buffSelfDamage(1));
 				yield return new WaitForSeconds(1f);
 				break;
-			case 2:
+			case 3:
 				StartCoroutine(debuffPlayerDamage(1));
 				yield return new WaitForSeconds(1f);
 				break;
@@ -140,7 +148,7 @@ public class BossManager : MonoBehaviour
 	
 	IEnumerator phaseThreeAI()
 	{
-		StartCoroutine(buffSelfDamage(1));
+		StartCoroutine(buffSelfDamage(2));
 		yield return new WaitForSeconds(1f);
 		attackPlayer();
 		yield return new WaitForSeconds(1.2f);
@@ -215,11 +223,11 @@ public class BossManager : MonoBehaviour
 				yield return new WaitForSeconds(1f);
 				StartCoroutine(buffSelfDamage(5));
 				yield return new WaitForSeconds(1f);
-				StartCoroutine(debuffPlayerDamage(5));
+				StartCoroutine(debuffPlayerDamage(3));
 				yield return new WaitForSeconds(1f);
 				break;
 			case 3:
-				StartCoroutine(debuffPlayerDamage(5));
+				StartCoroutine(debuffPlayerDamage(3));
 				yield return new WaitForSeconds(1f);
 				break;
 		}
