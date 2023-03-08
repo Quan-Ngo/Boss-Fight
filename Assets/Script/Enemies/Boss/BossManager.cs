@@ -183,7 +183,7 @@ public class BossManager : MonoBehaviour
 
 		if (bossHealth <= 0)
 		{
-			GameStateManager.instance.bossDied();
+			animator.SetTrigger("Death");
 		}
 		else if (bossHealth <= (maxBossHealth * (phaseThreeThreshholdPercent/100)) && bossPhase < 3)
 		{

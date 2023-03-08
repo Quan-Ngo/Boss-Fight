@@ -10,15 +10,14 @@ public class PlayerManager : MonoBehaviour
     public Animator animator;
     [SerializeField] private BuffManager BuffManager;
 
-    [SerializeField] private int MaxHealth = 50;
-    private int Health = 50;
-    private int Block = 0;
-
     //Player Statistics
     [SerializeField] private int AP = 5;
     [SerializeField] private int Damage = 5;
     [SerializeField] private float Lifesteal = 0f;
 	[SerializeField] private int Defense = 4;
+	[SerializeField] private int MaxHealth;
+    private int Health;
+	private int Block = 0;
 
     //Player Temp Statistics
     private int TempDamage = 0;
@@ -42,7 +41,8 @@ public class PlayerManager : MonoBehaviour
         {
             Destroy(this);
         }
-
+		
+		Health = MaxHealth;
         HealthBar.SetMaxHealth(Health);
         Debug.Log("Block =" + Block.ToString());
 		animationLock = false;
@@ -160,7 +160,7 @@ public class PlayerManager : MonoBehaviour
 		
 		if (Health <= 0)
 		{
-			GameStateManager.instance.playerDied();
+			playAnimationClip("death");
 		}
     }
 
@@ -236,6 +236,9 @@ public class PlayerManager : MonoBehaviour
 				break;
 			case "buff":
 				animator.SetTrigger("Buff");
+				break;
+			case "death":
+				animator.SetTrigger("Death");
 				break;
 		}
 	}

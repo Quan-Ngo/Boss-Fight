@@ -305,11 +305,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 976715627}
   BuffManager: {fileID: 1733997790}
-  MaxHealth: 50
   AP: 5
   Damage: 5
   Lifesteal: 0
   Defense: 4
+  MaxHealth: 50
   APText: {fileID: 1741034357}
   HealthBar: {fileID: 2053711874}
 --- !u!1 &100926497
@@ -1963,6 +1963,7 @@ GameObject:
   - component: {fileID: 976715627}
   - component: {fileID: 976715629}
   - component: {fileID: 976715630}
+  - component: {fileID: 976715631}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -2082,6 +2083,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7e171b6b78ae84ba8f3316a0fc06b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &976715631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976715625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bfd8615ac5ba364890556cb32a8668a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actor: 0
 --- !u!1 &980686079
 GameObject:
   m_ObjectHideFlags: 0
@@ -3716,6 +3730,7 @@ GameObject:
   - component: {fileID: 1591653278}
   - component: {fileID: 1591653277}
   - component: {fileID: 1591653279}
+  - component: {fileID: 1591653280}
   m_Layer: 0
   m_Name: BossSprite
   m_TagString: Untagged
@@ -3820,6 +3835,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d35e649619db7234bb6d3f390c77c476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actor: 1
+--- !u!114 &1591653280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591653275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bfd8615ac5ba364890556cb32a8668a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actor: 1

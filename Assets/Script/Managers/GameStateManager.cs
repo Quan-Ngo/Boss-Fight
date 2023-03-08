@@ -6,6 +6,10 @@ public class GameStateManager : MonoBehaviour
 {
 	public static GameStateManager instance;
     // Start is called before the first frame update
+	
+	private enum State {VICTORY, DEFEAT};
+	private State state;
+	
     void Start()
     {
         if (instance == null)
@@ -20,23 +24,33 @@ public class GameStateManager : MonoBehaviour
 
     public void playerDied()
 	{
-		StartCoroutine(changeSceneDefeat());
+		state = State.DEFEAT;
+		StartCoroutine(changeGameScene(state));
 	}
 	
-	IEnumerator changeSceneDefeat()
+	/*IEnumerator changeSceneDefeat()
 	{
-		yield return new WaitForSeconds(0.21f);
+		yield return new WaitForSeconds(0.5f);
 		changeScene.instance.defeatScene();
-	}
+	}*/
 	
 	public void bossDied()
 	{
-		StartCoroutine(changeSceneVictory());
+		state = State.VICTORY;
+		StartCoroutine(changeGameScene(state));
 	}
 	
-	IEnumerator changeSceneVictory()
+	IEnumerator changeGameScene(State currentState)
 	{
-		yield return new WaitForSeconds(0.21f);
-		changeScene.instance.victoryScene();
+		yield return new WaitForSeconds(0.5f);
+		
+		if (currentState == State.VICTORY)
+		{
+			changeScene.instance.victoryScene();
+		}
+		else if (currentState == State.DEFEAT)
+		{
+			changeScene.instance.defeatScene();
+		}
 	}
 }
