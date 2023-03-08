@@ -2978,7 +2978,6 @@ MonoBehaviour:
   phaseThreeThreshholdPercent: 10
   maxBossHealth: 100
   enrageTurn: 40
-  dmgDisplay: {fileID: 0}
   animator: {fileID: 1591653277}
   phaseChangeFX: {fileID: 211154646}
   bossHealth: 0
@@ -2986,7 +2985,8 @@ MonoBehaviour:
   baseDamage: 3
   phaseTransition: 1
   enraged: 0
-  HealthBar: {fileID: 1994038371}
+  healthBar: {fileID: 1994038371}
+  buffIcon: {fileID: 1609349935}
 --- !u!1 &1414257038
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,15 +3990,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3757130490993493534, guid: b592b0ad2e72fa241b1ed5009a933236, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0389074d1deba1c448d45812db40c0df, type: 3}
+    - target: {fileID: 4597739296063767716, guid: b592b0ad2e72fa241b1ed5009a933236, type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7035143012191692024, guid: b592b0ad2e72fa241b1ed5009a933236, type: 3}
       propertyPath: m_Name
       value: BossBuffIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7035143012191692024, guid: b592b0ad2e72fa241b1ed5009a933236, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b592b0ad2e72fa241b1ed5009a933236, type: 3}
 --- !u!224 &1609349934 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3597932187061480224, guid: b592b0ad2e72fa241b1ed5009a933236, type: 3}
+  m_PrefabInstance: {fileID: 1609349933}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1609349935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7035143012191692024, guid: b592b0ad2e72fa241b1ed5009a933236, type: 3}
   m_PrefabInstance: {fileID: 1609349933}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1655629957
