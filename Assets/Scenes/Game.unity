@@ -1661,6 +1661,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &910460448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 891334527045922375, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+  m_PrefabInstance: {fileID: 891334526747830375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &976715625
 GameObject:
   m_ObjectHideFlags: 0
@@ -2869,6 +2880,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414257038}
   m_CullTransparentMesh: 1
+--- !u!224 &1433365585 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+  m_PrefabInstance: {fileID: 891334526747830375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1472312295
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,6 +3166,7 @@ GameObject:
   - component: {fileID: 1574898775}
   - component: {fileID: 1574898774}
   - component: {fileID: 1574898773}
+  - component: {fileID: 1574898776}
   m_Layer: 5
   m_Name: Buff
   m_TagString: Untagged
@@ -3272,6 +3289,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574898771}
   m_CullTransparentMesh: 1
+--- !u!114 &1574898776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574898771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e848f0e5135d3df4ab6b19c889ee83fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipToShow: 'Cost: 3AP<nl><nl>Permanently increases damage dealt by 1.'
 --- !u!1 &1582846591
 GameObject:
   m_ObjectHideFlags: 0
@@ -4196,6 +4226,7 @@ GameObject:
   - component: {fileID: 1820658629}
   - component: {fileID: 1820658628}
   - component: {fileID: 1820658632}
+  - component: {fileID: 1820658633}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4232,12 +4263,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4253,7 +4284,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4282,6 +4313,7 @@ RectTransform:
   - {fileID: 611463499}
   - {fileID: 1075457844}
   - {fileID: 1414257039}
+  - {fileID: 1433365585}
   m_Father: {fileID: 1700461248}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4310,6 +4342,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1820658633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820658627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8405016d34bb3724d8df77fbc6e91f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipText: {fileID: 910460448}
+  tipWindow: {fileID: 1433365585}
+  maxWidth: 365
 --- !u!1 &1821841945
 GameObject:
   m_ObjectHideFlags: 0
@@ -4406,6 +4453,7 @@ GameObject:
   - component: {fileID: 1856664993}
   - component: {fileID: 1856664992}
   - component: {fileID: 1856664991}
+  - component: {fileID: 1856664994}
   m_Layer: 5
   m_Name: Lifesteal
   m_TagString: Untagged
@@ -4528,6 +4576,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856664989}
   m_CullTransparentMesh: 1
+--- !u!114 &1856664994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856664989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e848f0e5135d3df4ab6b19c889ee83fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipToShow: 'Cost: 3AP<nl><nl>For 3 turns, attacks restore HP equal to 1/5 of damage
+    dealt.'
 --- !u!1 &1912383404
 GameObject:
   m_ObjectHideFlags: 0
@@ -4675,6 +4737,7 @@ GameObject:
   - component: {fileID: 1949406118}
   - component: {fileID: 1949406117}
   - component: {fileID: 1949406116}
+  - component: {fileID: 1949406119}
   m_Layer: 5
   m_Name: Defend
   m_TagString: Untagged
@@ -4797,6 +4860,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949406114}
   m_CullTransparentMesh: 1
+--- !u!114 &1949406119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949406114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e848f0e5135d3df4ab6b19c889ee83fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipToShow: 'Cost: 2AP<nl><nl>Gain 4 shields.'
 --- !u!1 &1979259267
 GameObject:
   m_ObjectHideFlags: 0
@@ -5370,6 +5446,7 @@ GameObject:
   - component: {fileID: 2128188196}
   - component: {fileID: 2128188195}
   - component: {fileID: 2128188194}
+  - component: {fileID: 2128188197}
   m_Layer: 5
   m_Name: Attack
   m_TagString: Untagged
@@ -5492,6 +5569,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128188192}
   m_CullTransparentMesh: 1
+--- !u!114 &2128188197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128188192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e848f0e5135d3df4ab6b19c889ee83fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipToShow: 'Cost: 1AP<nl><nl>Attack for 5 damage.'
 --- !u!1 &2135367922
 GameObject:
   m_ObjectHideFlags: 0
@@ -5576,3 +5666,100 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &891334526747830375
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1820658631}
+    m_Modifications:
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 370
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 262
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1300
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834486, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891334527634834487, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
+      propertyPath: m_Name
+      value: Tooltip
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 97ae0d19cdad69a4c93772c6367d6e97, type: 3}
