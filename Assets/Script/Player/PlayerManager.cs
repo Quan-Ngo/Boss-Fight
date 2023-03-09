@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
 	
     public Animator animator;
+	public AudioClip[] audioClips;
+	private AudioSource audioSource;
     [SerializeField] private BuffManager BuffManager;
 
     //Player Statistics
@@ -46,6 +48,7 @@ public class PlayerManager : MonoBehaviour
         HealthBar.SetMaxHealth(Health);
         Debug.Log("Block =" + Block.ToString());
 		animationLock = false;
+		audioSource = GetComponent<AudioSource>();
     }
 
     public void turnStart()
@@ -63,6 +66,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (AP >= 1 && !animationLock) {
             updateAP(-1);
+			audioSource.clip = audioClips[0];
 			playAnimationClip("attack");
         }
         else
@@ -96,6 +100,8 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 2 && !animationLock)
         {
             updateAP(-2);
+			audioSource.clip = audioClips[2];
+			audioSource.Play();
             Block += Defense + TempDefense; //Temporary Value for Block
             Debug.Log("I gained " + Block.ToString() + " Block");
         }
@@ -110,6 +116,7 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 2 && !animationLock)
         {
             updateAP(-2);
+			audioSource.clip = audioClips[1];
 			playAnimationClip("buff");
             Buff DamageBuff = new Buff("DamageBuff" ,Type.Buff, Stats.Damage, 1, -1, 1);
             BuffManager.addBuff(DamageBuff);
@@ -126,6 +133,7 @@ public class PlayerManager : MonoBehaviour
         if (AP >= 3 && !animationLock)
         {
             updateAP(-3);
+			audioSource.clip = audioClips[1];
 			playAnimationClip("buff");
             Buff LifestealBuff = new Buff("LifestealBuff", Type.Buff, Stats.Lifesteal, 33, 3, -1);
             BuffManager.addBuff(LifestealBuff);
