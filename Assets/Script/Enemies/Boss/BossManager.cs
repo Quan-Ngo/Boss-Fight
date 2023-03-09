@@ -237,7 +237,7 @@ public class BossManager : MonoBehaviour
 	IEnumerator buffSelfDamage(int amount)
 	{
 		animator.SetTrigger("Cast");
-		Buff damageBuff = new Buff("damageBuff" ,Type.Buff, Stats.Damage, 1, -1, amount);
+		Buff damageBuff = new Buff("damageBuff1" ,Type.Buff, Stats.Damage, 1, -1, amount);
 		
 		yield return new WaitForSeconds(0.5f);
 		if (BossBuffs.ContainsKey(damageBuff.Name))
@@ -256,7 +256,7 @@ public class BossManager : MonoBehaviour
 	IEnumerator debuffPlayerDamage(int amount)
 	{
 		animator.SetTrigger("Cast");
-		Buff damageDebuff = new Buff("damageDebuff", Type.Debuff, Stats.Damage, -1, -1, amount);
+		Buff damageDebuff = new Buff("damageDebuff1", Type.Debuff, Stats.Damage, -1, -1, amount);
 		yield return new WaitForSeconds(0.5f);
 		Debug.Log("Debuff: " + damageDebuff);
 		PlayerManager.Instance.addBuff(damageDebuff);
@@ -265,7 +265,7 @@ public class BossManager : MonoBehaviour
 	IEnumerator debuffPlayerBlock(int amount)
 	{
 		animator.SetTrigger("Cast");
-		Buff blockDebuff = new Buff("blockDebuff", Type.Debuff, Stats.Block, -1, -1, amount);
+		Buff blockDebuff = new Buff("blockDebuff1", Type.Debuff, Stats.Block, -1, -1, amount);
 		yield return new WaitForSeconds(0.5f);
 		PlayerManager.Instance.addBuff(blockDebuff);
 	}
