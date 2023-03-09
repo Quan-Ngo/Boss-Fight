@@ -242,13 +242,13 @@ public class BossManager : MonoBehaviour
 		if (BossBuffs.ContainsKey(damageBuff.Name))
 		{
 			BossBuffs[damageBuff.Name].Stacks += amount;
-			buffIcon.GetComponent<BuffIcon>().updateIconStacks(BossBuffs[damageBuff.Name].Stacks);
 		}
 		else 
 		{
 			BossBuffs.Add(damageBuff.Name, damageBuff);
 			buffIcon.SetActive(true);
 		}
+		buffIcon.GetComponent<BuffIcon>().updateIconStacks(BossBuffs[damageBuff.Name].Stacks);
 		baseDamage += amount;
 	}
 	
