@@ -69,4 +69,9 @@ public class Buttons : MonoBehaviour
 	{
 		changeScene.instance.gameScene();
 	}
+	
+	public void quitGame()
+	{
+		Application.Quit();
+	}
 }
