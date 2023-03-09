@@ -2987,11 +2987,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6ebb2fe27eaf44182383820e599c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phaseOneThreshholdPercent: 75
+  phaseOneThreshholdPercent: 80
   phaseTwoThreshholdPercent: 50
-  phaseThreeThreshholdPercent: 10
-  maxBossHealth: 100
-  enrageTurn: 40
+  phaseThreeThreshholdPercent: 20
+  maxBossHealth: 175
+  enrageTurn: 20
   animator: {fileID: 1591653277}
   phaseChangeFX: {fileID: 211154646}
   bossHealth: 0
@@ -3557,7 +3557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e848f0e5135d3df4ab6b19c889ee83fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipToShow: 'Cost: 3AP<nl><nl>Permanently increases damage dealt by 1.'
+  tipToShow: 'Cost: 2AP<nl><nl>Permanently increases damage dealt by 1.'
 --- !u!1 &1582846591
 GameObject:
   m_ObjectHideFlags: 0
@@ -3746,8 +3746,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591653275}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.66, y: 0.341, z: 0}
-  m_LocalScale: {x: 3.7427886, y: 2.18557, z: 1.1503}
+  m_LocalPosition: {x: -1.27, y: 0.061, z: 0}
+  m_LocalScale: {x: 2.6180058, y: 1.5287625, z: 0.80461186}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1396820674}
