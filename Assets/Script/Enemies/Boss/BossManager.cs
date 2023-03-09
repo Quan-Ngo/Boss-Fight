@@ -16,6 +16,8 @@ public class BossManager : MonoBehaviour
 	public int enrageTurn;
 	public Animator animator;
 	public Animator phaseChangeFX;
+	public AudioClip[] audioClips;
+	
 	
 	
 	[SerializeField] private int bossHealth;
@@ -27,6 +29,7 @@ public class BossManager : MonoBehaviour
 	[SerializeField] private HealthBar healthBar;
 	[SerializeField] private GameObject buffIcon;
 
+	private AudioSource audioSource;
 	Dictionary<string, Buff> BossBuffs = new Dictionary<string, Buff>();
 	
 	
@@ -37,6 +40,7 @@ public class BossManager : MonoBehaviour
 		healthBar.SetMaxHealth(maxBossHealth);
 		buffIcon.SetActive(false);
 		phaseTransition = false;
+		audioSource = GetComponent<AudioSource>();
 	}
 	
     void Awake()
@@ -170,10 +174,12 @@ public class BossManager : MonoBehaviour
 	{
 		if (bossPhase == 3 || enraged)
 		{
+			audioSource.clip = audioClips[1];
 			animator.SetTrigger("AttackMagic");
 		}
 		else
 		{
+			audioSource.clip = audioClips[0];
 			animator.SetTrigger("Attack");
 		}
 	}
@@ -236,6 +242,7 @@ public class BossManager : MonoBehaviour
 	
 	IEnumerator buffSelfDamage(int amount)
 	{
+		audioSource.clip = audioClips[2];
 		animator.SetTrigger("Cast");
 		Buff damageBuff = new Buff("damageBuff1" ,Type.Buff, Stats.Damage, 1, -1, amount);
 		
@@ -255,6 +262,7 @@ public class BossManager : MonoBehaviour
 	
 	IEnumerator debuffPlayerDamage(int amount)
 	{
+		audioSource.clip = audioClips[2];
 		animator.SetTrigger("Cast");
 		Buff damageDebuff = new Buff("damageDebuff1", Type.Debuff, Stats.Damage, -1, -1, amount);
 		yield return new WaitForSeconds(0.5f);
@@ -264,6 +272,7 @@ public class BossManager : MonoBehaviour
 	
 	IEnumerator debuffPlayerBlock(int amount)
 	{
+		audioSource.clip = audioClips[2];
 		animator.SetTrigger("Cast");
 		Buff blockDebuff = new Buff("blockDebuff1", Type.Debuff, Stats.Block, -1, -1, amount);
 		yield return new WaitForSeconds(0.5f);
