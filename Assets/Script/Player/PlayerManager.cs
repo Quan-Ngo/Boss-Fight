@@ -127,7 +127,7 @@ public class PlayerManager : MonoBehaviour
         {
             updateAP(-3);
 			playAnimationClip("buff");
-            Buff LifestealBuff = new Buff("LifestealBuff", Type.Buff, Stats.Lifesteal, 20, 3, -1);
+            Buff LifestealBuff = new Buff("LifestealBuff20", Type.Buff, Stats.Lifesteal, 20, 3, -1);
             BuffManager.addBuff(LifestealBuff);
             Debug.Log("I Gained a Lifesteal Buff of " + LifestealBuff.buffValue.Value + "%");
         }
