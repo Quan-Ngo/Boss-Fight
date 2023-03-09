@@ -104,6 +104,7 @@ public class BossManager : MonoBehaviour
 	
 	IEnumerator phaseOneAI()
 	{
+		
 		switch (Random.Range(0, 3))
 		{
 			case 0:
@@ -221,7 +222,7 @@ public class BossManager : MonoBehaviour
 			case 2:
 				StartCoroutine(debuffPlayerBlock(2));
 				yield return new WaitForSeconds(1f);
-				StartCoroutine(buffSelfDamage(5));
+				StartCoroutine(buffSelfDamage(3));
 				yield return new WaitForSeconds(1f);
 				StartCoroutine(debuffPlayerDamage(3));
 				yield return new WaitForSeconds(1f);
