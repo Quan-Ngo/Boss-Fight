@@ -118,7 +118,7 @@ public class PlayerManager : MonoBehaviour
             updateAP(-2);
 			audioSource.clip = audioClips[1];
 			playAnimationClip("buff");
-            Buff DamageBuff = new Buff("DamageBuff" ,Type.Buff, Stats.Damage, 1, -1, 1);
+            Buff DamageBuff = new Buff("DamageBuff" ,Type.Buff, Stats.Damage, 1, -1, "Damage incresed by 1 per stack.", 1);
             BuffManager.addBuff(DamageBuff);
             Debug.Log("I Gained a Damage Buff of " + DamageBuff.buffValue.Value);
         }
@@ -135,7 +135,7 @@ public class PlayerManager : MonoBehaviour
             updateAP(-3);
 			audioSource.clip = audioClips[1];
 			playAnimationClip("buff");
-            Buff LifestealBuff = new Buff("LifestealBuff", Type.Buff, Stats.Lifesteal, 33, 3, -1);
+            Buff LifestealBuff = new Buff("LifestealBuff", Type.Buff, Stats.Lifesteal, 33, 3, "Attacks heal based on damage dealt.", -1);
             BuffManager.addBuff(LifestealBuff);
             Debug.Log("I Gained a Lifesteal Buff of " + LifestealBuff.buffValue.Value + "%");
         }

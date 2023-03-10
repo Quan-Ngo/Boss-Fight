@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 7035836027208004600}
   - component: {fileID: 3757130490993493534}
   - component: {fileID: 4751281359501977039}
+  - component: {fileID: -1157647191945064016}
   m_Layer: 5
   m_Name: BuffIcon
   m_TagString: Untagged
@@ -254,3 +255,16 @@ MonoBehaviour:
   StackCount: {fileID: 7782047564741677680}
   DurationCount: {fileID: 4597739296063767716}
   BuffImage: {fileID: 3757130490993493534}
+--- !u!114 &-1157647191945064016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7035143012191692024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e848f0e5135d3df4ab6b19c889ee83fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipToShow: 

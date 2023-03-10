@@ -132,6 +132,7 @@ public class BuffManager : MonoBehaviour
         }
 
         buffIcon.GetComponent<BuffIcon>().CreateIcon(Sprite[imageIndex], buff.Stacks, buff.Duration);
+		buffIcon.GetComponent<HoverTip>().tipToShow = buff.Tooltip;
         BuffIcons.Add(buff.Name, buffIcon);
     }
 

@@ -244,7 +244,7 @@ public class BossManager : MonoBehaviour
 	{
 		audioSource.clip = audioClips[2];
 		animator.SetTrigger("Cast");
-		Buff damageBuff = new Buff("damageBuff1" ,Type.Buff, Stats.Damage, 1, -1, amount);
+		Buff damageBuff = new Buff("damageBuff1" ,Type.Buff, Stats.Damage, 1, -1, "Damage increased by 1 per stack.", amount);
 		
 		yield return new WaitForSeconds(0.5f);
 		if (BossBuffs.ContainsKey(damageBuff.Name))
@@ -257,6 +257,7 @@ public class BossManager : MonoBehaviour
 			buffIcon.SetActive(true);
 		}
 		buffIcon.GetComponent<BuffIcon>().updateIconStacks(BossBuffs[damageBuff.Name].Stacks);
+		buffIcon.GetComponent<HoverTip>().tipToShow = damageBuff.Tooltip;
 		baseDamage += amount;
 	}
 	
@@ -264,7 +265,7 @@ public class BossManager : MonoBehaviour
 	{
 		audioSource.clip = audioClips[2];
 		animator.SetTrigger("Cast");
-		Buff damageDebuff = new Buff("damageDebuff1", Type.Debuff, Stats.Damage, -1, -1, amount);
+		Buff damageDebuff = new Buff("damageDebuff1", Type.Debuff, Stats.Damage, -1, -1, "Damage reduced by 1 per stack.", amount);
 		yield return new WaitForSeconds(0.5f);
 		Debug.Log("Debuff: " + damageDebuff);
 		PlayerManager.Instance.addBuff(damageDebuff);
@@ -274,7 +275,7 @@ public class BossManager : MonoBehaviour
 	{
 		audioSource.clip = audioClips[2];
 		animator.SetTrigger("Cast");
-		Buff blockDebuff = new Buff("blockDebuff1", Type.Debuff, Stats.Block, -1, -1, amount);
+		Buff blockDebuff = new Buff("blockDebuff1", Type.Debuff, Stats.Block, -1, -1, "Decreases shields gained by 1 per stack.", amount);
 		yield return new WaitForSeconds(0.5f);
 		PlayerManager.Instance.addBuff(blockDebuff);
 	}

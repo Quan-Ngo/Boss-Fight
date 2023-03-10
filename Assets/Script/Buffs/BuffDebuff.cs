@@ -22,16 +22,18 @@ public class Buff
     public Type Type;
 
     public int Duration;
+	public string Tooltip;
     public BuffValue buffValue;
 
     public int Stacks;
 
-    public Buff(string name, Type type, Stats stat, int value, int duration, int stacks)
+    public Buff(string name, Type type, Stats stat, int value, int duration, string tooltip, int stacks)
     {
         Name = name;
         Type = type;
         Duration = duration;
         Stacks = stacks;
+		Tooltip = tooltip;
 
         buffValue = new BuffValue(stat, value);
     }
