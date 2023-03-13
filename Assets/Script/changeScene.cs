@@ -38,7 +38,7 @@ public class changeScene : MonoBehaviour
 	IEnumerator loadScene(int sceneIndexToLoad)
 	{
 		sceneFade.SetTrigger("FadeOut");
-		yield return new WaitForSeconds(0.21f);
+		yield return new WaitForSeconds(1.2f);
 		SceneManager.LoadScene(sceneIndexToLoad);
 	}
 }
