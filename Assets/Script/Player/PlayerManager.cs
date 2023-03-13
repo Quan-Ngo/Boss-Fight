@@ -168,6 +168,7 @@ public class PlayerManager : MonoBehaviour
 		
 		if (Health <= 0)
 		{
+			audioSource.clip = audioClips[3];
 			playAnimationClip("death");
 		}
     }
