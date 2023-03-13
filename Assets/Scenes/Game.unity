@@ -3170,6 +3170,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bc54f147b51e4d84186628e26ea3250f, type: 3}
   - {fileID: 8300000, guid: ff024e99d671b5346b119e1f89535d62, type: 3}
   - {fileID: 8300000, guid: d5a032896b1593240a307de8a8c98567, type: 3}
+  - {fileID: 8300000, guid: 6de447c45d803584c90b84ab8504d2fc, type: 3}
   bossHealth: 0
   bossPhase: 0
   baseDamage: 3

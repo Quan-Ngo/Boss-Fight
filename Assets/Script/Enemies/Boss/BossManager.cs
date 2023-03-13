@@ -198,6 +198,7 @@ public class BossManager : MonoBehaviour
 
 		if (bossHealth <= 0)
 		{
+			audioSource.clip = audioClips[3];
 			animator.SetTrigger("Death");
 		}
 		else if (bossHealth <= (maxBossHealth * (phaseThreeThreshholdPercent/100)) && bossPhase < 3)
