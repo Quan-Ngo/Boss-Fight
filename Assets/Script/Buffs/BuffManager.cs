@@ -41,6 +41,7 @@ public class BuffManager : MonoBehaviour
             removeBuff(buff);
             Debug.Log("Removed " + buff.Name);
         }
+		ExpiredBuffs.Clear();
     }
 
     public void addBuff(Buff buff)
