@@ -3163,7 +3163,7 @@ MonoBehaviour:
   phaseTwoThreshholdPercent: 60
   phaseThreeThreshholdPercent: 20
   maxBossHealth: 200
-  enrageTurn: 30
+  enrageTurn: 25
   animator: {fileID: 1591653277}
   phaseChangeFX: {fileID: 211154646}
   audioClips:
@@ -3460,6 +3460,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7900020618045372964, guid: c7e47ac608159a44397a031a72e26cb1, type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900020618045372964, guid: c7e47ac608159a44397a031a72e26cb1, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900020618045372964, guid: c7e47ac608159a44397a031a72e26cb1, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900020618045372964, guid: c7e47ac608159a44397a031a72e26cb1, type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7900020618045372968, guid: c7e47ac608159a44397a031a72e26cb1, type: 3}
