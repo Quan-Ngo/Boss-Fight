@@ -57,9 +57,6 @@ public class PlayerManager : MonoBehaviour
         APText.text = ("AP: " + AP.ToString());
 
         BuffManager.updateBuffs();
-
-        // Debug Statements
-        Debug.Log("Block = " + Block.ToString());
     }
 
     public void attack()
@@ -86,7 +83,6 @@ public class PlayerManager : MonoBehaviour
 		}
 		
 		BossManager.Instance.takeDamage(damageDealt);
-		Debug.Log("I attacked for " + (damageDealt).ToString() + " Damage");
 
 		if(Lifesteal + TempLifesteal > 0)
 		{
@@ -103,7 +99,7 @@ public class PlayerManager : MonoBehaviour
 			audioSource.clip = audioClips[2];
 			audioSource.Play();
             Block += Defense + TempDefense; //Temporary Value for Block
-            Debug.Log("I gained " + Block.ToString() + " Block");
+            HealthBar.SetBlock(Block);
         }
         else
         {
@@ -120,7 +116,6 @@ public class PlayerManager : MonoBehaviour
 			playAnimationClip("buff");
             Buff DamageBuff = new Buff("DamageBuff" ,Type.Buff, Stats.Damage, 1, -1, "Damage incresed by 1 per stack.", 1);
             BuffManager.addBuff(DamageBuff);
-            Debug.Log("I Gained a Damage Buff of " + DamageBuff.buffValue.Value);
         }
         else
         {
@@ -137,7 +132,6 @@ public class PlayerManager : MonoBehaviour
 			playAnimationClip("buff");
             Buff LifestealBuff = new Buff("LifestealBuff", Type.Buff, Stats.Lifesteal, 34, 3, "Attacks heal based on damage dealt.", -1);
             BuffManager.addBuff(LifestealBuff);
-            Debug.Log("I Gained a Lifesteal Buff of " + LifestealBuff.buffValue.Value + "%");
         }
         else
         {
@@ -157,11 +151,13 @@ public class PlayerManager : MonoBehaviour
         if (Block >= Damage)
         {
             Block -= Damage;
+            HealthBar.SetBlock(Block);
         }
         else
         {
             Damage -= Block;
             Block = 0;
+            HealthBar.SetBlock(Block);
             Health -= Damage;
             HealthBar.SetHealth(Health);
         }

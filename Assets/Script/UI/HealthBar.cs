@@ -8,12 +8,16 @@ public class HealthBar : MonoBehaviour
 {
     public Slider Health;
     public Text healthText;
-	
-    //public Slider Block;
+
+    [SerializeField] private Image FillColor;
+    [SerializeField] private Sprite[] Fills;
+
+    [SerializeField] private GameObject ShieldDisplay;
+    [SerializeField] private Text BlockText;
 
     private void Start()
     {
-        //Block.value = 0;
+        ShieldDisplay.SetActive(false);
     }
 
     public void SetMaxHealth(int health)
@@ -29,9 +33,25 @@ public class HealthBar : MonoBehaviour
 		setHealthText();
     }
 
-	void setHealthText()
+	private void setHealthText()
 	{
 		healthText.text = Health.value + "/" + Health.maxValue;
+    }
+
+    public void SetBlock(int block)
+    {
+        if(block <= 0)
+        {
+            BlockText.text = "0";
+            ShieldDisplay.SetActive(false);
+            FillColor.sprite = Fills[0];
+        }
+        else
+        {
+            ShieldDisplay.SetActive(true);
+            BlockText.text = "" + block.ToString();
+            FillColor.sprite = Fills[1];
+        }
     }
 
 
