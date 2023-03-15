@@ -18,6 +18,9 @@ public class BossManager : MonoBehaviour
 	public Animator phaseChangeFX;
 	public AudioClip[] audioClips;
 	public Animator[] enrageFX;
+	public int phaseOneTurnLimit;
+	public int phaseTwoTurnLimit;
+	public int phaseThreeTurnLimit;
 	
 	
 	
@@ -58,7 +61,22 @@ public class BossManager : MonoBehaviour
 
     public void turnStart()
     {
-		if (!enraged && TurnManager.Instance.getTurnCount() >= enrageTurn)
+		if (bossPhase < 1 && TurnManager.Instance.getTurnCount() == phaseOneTurnLimit)
+		{
+			bossPhase = 1;
+			phaseTransition = true;
+		}
+		else if (bossPhase < 2 && TurnManager.Instance.getTurnCount() == phaseTwoTurnLimit)
+		{
+			bossPhase = 2;
+			phaseTransition = true;
+		}
+		else if (bossPhase < 3 && TurnManager.Instance.getTurnCount() == phaseThreeTurnLimit)
+		{
+			bossPhase = 3;
+			phaseTransition = true;
+		}
+		else if (!enraged && TurnManager.Instance.getTurnCount() == enrageTurn)
 		{
 			StartCoroutine(beginEnrage());
 		}

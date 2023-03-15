@@ -3592,6 +3592,9 @@ MonoBehaviour:
   - {fileID: 1987868027}
   - {fileID: 2097878814}
   - {fileID: 1397071583}
+  phaseOneTurnLimit: 7
+  phaseTwoTurnLimit: 13
+  phaseThreeTurnLimit: 18
   bossHealth: 0
   bossPhase: 0
   baseDamage: 3
