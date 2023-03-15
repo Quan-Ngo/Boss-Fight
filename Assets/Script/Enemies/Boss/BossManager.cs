@@ -17,6 +17,7 @@ public class BossManager : MonoBehaviour
 	public Animator animator;
 	public Animator phaseChangeFX;
 	public AudioClip[] audioClips;
+	public Animator[] enrageFX;
 	
 	
 	
@@ -59,7 +60,7 @@ public class BossManager : MonoBehaviour
     {
 		if (!enraged && TurnManager.Instance.getTurnCount() >= enrageTurn)
 		{
-			enraged = true;
+			StartCoroutine(beginEnrage());
 		}
 		
 		if (!enraged)
@@ -238,6 +239,17 @@ public class BossManager : MonoBehaviour
 				StartCoroutine(debuffPlayerDamage(5));
 				yield return new WaitForSeconds(1f);
 				break;
+		}
+	}
+	
+	IEnumerator beginEnrage()
+	{
+		animator.SetTrigger("Cast");
+		enraged = true;
+		foreach(Animator effect in enrageFX)
+		{
+			effect.SetTrigger("Start");
+			yield return new WaitForSeconds(0.1f);
 		}
 	}
 	

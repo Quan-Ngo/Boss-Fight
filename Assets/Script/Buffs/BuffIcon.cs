@@ -36,10 +36,12 @@ public class BuffIcon : MonoBehaviour
     public void updateIconStacks(int stacks)
     {
         StackCount.text = "" + stacks;
+		GetComponent<Animator>().SetTrigger("Update");
     }
 
     public void updateIconDuration(int duration)
     {
         DurationCount.text = "" + duration;
+		GetComponent<Animator>().SetTrigger("Update");
     }
 }
