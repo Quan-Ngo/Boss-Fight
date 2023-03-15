@@ -7,7 +7,7 @@ using TMPro;
 public class HealthBar : MonoBehaviour
 {
     public Slider Health;
-	public TMP_Text healthText;
+    public Text healthText;
 	
     //public Slider Block;
 
@@ -32,7 +32,7 @@ public class HealthBar : MonoBehaviour
 	void setHealthText()
 	{
 		healthText.text = Health.value + "/" + Health.maxValue;
-	}
+    }
 
 
 }
