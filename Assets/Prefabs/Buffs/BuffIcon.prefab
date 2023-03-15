@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 3757130490993493534}
   - component: {fileID: 4751281359501977039}
   - component: {fileID: -1157647191945064016}
+  - component: {fileID: 4533847354303419579}
   m_Layer: 5
   m_Name: BuffIcon
   m_TagString: Untagged
@@ -268,3 +269,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipToShow: 
+--- !u!95 &4533847354303419579
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7035143012191692024}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8c9048374da3ab04dbaca2f267d12f91, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
