@@ -48,7 +48,8 @@ public class HealthBar : MonoBehaviour
         }
         else
         {
-            ShieldDisplay.SetActive(true);
+			ShieldDisplay.SetActive(true);
+			ShieldDisplay.GetComponent<Animator>().SetTrigger("Appear");
             BlockText.text = "" + block.ToString();
             FillColor.sprite = Fills[1];
         }
