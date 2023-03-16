@@ -14,17 +14,17 @@ public class PlayerManager : MonoBehaviour
 
     //Player Statistics
     [SerializeField] private int AP = 5;
-    [SerializeField] private int Damage = 5;
-    [SerializeField] private float Lifesteal = 0f;
-	[SerializeField] private int Defense = 4;
+    public int Damage = 5;
+    public float Lifesteal = 0f;
+	public int Defense = 4;
 	[SerializeField] private int MaxHealth;
     private int Health;
 	private int Block = 0;
 
     //Player Temp Statistics
-    private int TempDamage = 0;
-    private int TempDefense;
-    private float TempLifesteal = 0f;
+    public int TempDamage = 0;
+    public int TempDefense;
+    public float TempLifesteal = 0f;
 
     //Player UI Elements
     [SerializeField] private Text APText;
@@ -46,7 +46,6 @@ public class PlayerManager : MonoBehaviour
 		
 		Health = MaxHealth;
         HealthBar.SetMaxHealth(Health);
-        Debug.Log("Block =" + Block.ToString());
 		animationLock = false;
 		audioSource = GetComponent<AudioSource>();
     }
@@ -130,7 +129,7 @@ public class PlayerManager : MonoBehaviour
             updateAP(-3);
 			audioSource.clip = audioClips[1];
 			playAnimationClip("buff");
-            Buff LifestealBuff = new Buff("LifestealBuff", Type.Buff, Stats.Lifesteal, 34, 3, "Attacks heal based on damage dealt.", -1);
+            Buff LifestealBuff = new Buff("LifestealBuff", Type.Buff, Stats.Lifesteal, 34, 3, "Attacks heal for 30% of damage dealt.", -1);
             BuffManager.addBuff(LifestealBuff);
         }
         else
@@ -207,6 +206,8 @@ public class PlayerManager : MonoBehaviour
                 TempLifesteal += ((float) (buff.buffValue.Value)) / 100f;
                 break;
         }
+
+        ActionManager.Instance.updateTips();
     }
 
     public void removeStatBuff(Buff buff)
@@ -223,6 +224,8 @@ public class PlayerManager : MonoBehaviour
                 TempLifesteal -= ((float)(buff.buffValue.Value)) / 100f;
                 break;
         }
+
+        ActionManager.Instance.updateTips();
     }
 
     public void endAnimationLock()

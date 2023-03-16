@@ -1845,7 +1845,7 @@ GameObject:
   - component: {fileID: 975469504}
   - component: {fileID: 975469503}
   - component: {fileID: 975469502}
-  - component: {fileID: 975469501}
+  - component: {fileID: 975469505}
   m_Layer: 5
   m_Name: Replay
   m_TagString: Untagged
@@ -1874,18 +1874,6 @@ RectTransform:
   m_AnchoredPosition: {x: -345, y: -124}
   m_SizeDelta: {x: 300, y: 106}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &975469501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 975469499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bad6670fc91fd9468221993c55233b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &975469502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1930,8 +1918,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 975469501}
-        m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+      - m_Target: {fileID: 975469505}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
         m_MethodName: startGame
         m_Mode: 1
         m_Arguments:
@@ -1980,6 +1968,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975469499}
   m_CullTransparentMesh: 1
+--- !u!114 &975469505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975469499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ccd66c56658cf241b225fc1b505f268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1086796405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,7 +2206,7 @@ GameObject:
   - component: {fileID: 1354084739}
   - component: {fileID: 1354084738}
   - component: {fileID: 1354084737}
-  - component: {fileID: 1354084736}
+  - component: {fileID: 1354084740}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -2235,18 +2235,6 @@ RectTransform:
   m_AnchoredPosition: {x: 390, y: -124}
   m_SizeDelta: {x: 300, y: 106}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1354084736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354084734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bad6670fc91fd9468221993c55233b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1354084737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2291,8 +2279,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1354084736}
-        m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+      - m_Target: {fileID: 1354084740}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
         m_MethodName: quitGame
         m_Mode: 1
         m_Arguments:
@@ -2341,6 +2329,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354084734}
   m_CullTransparentMesh: 1
+--- !u!114 &1354084740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354084734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ccd66c56658cf241b225fc1b505f268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1391914912 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7900020618045372971, guid: c7e47ac608159a44397a031a72e26cb1, type: 3}
