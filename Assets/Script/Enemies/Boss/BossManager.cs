@@ -298,7 +298,6 @@ public class BossManager : MonoBehaviour
 		animator.SetTrigger("Cast");
 		Buff damageDebuff = new Buff("damageDebuff1", Type.Debuff, Stats.Damage, -1, -1, "Damage reduced by 1 per stack.", amount);
 		yield return new WaitForSeconds(0.5f);
-		Debug.Log("Debuff: " + damageDebuff);
 		PlayerManager.Instance.addBuff(damageDebuff);
 	}
 	

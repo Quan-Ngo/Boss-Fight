@@ -65,10 +65,6 @@ public class PlayerManager : MonoBehaviour
 			audioSource.clip = audioClips[0];
 			playAnimationClip("attack");
         }
-        else
-        {
-            Debug.Log("Not Enough AP");
-        }
     }
 	
 	public void dealDamage()
@@ -100,10 +96,6 @@ public class PlayerManager : MonoBehaviour
             Block += Defense + TempDefense; //Temporary Value for Block
             HealthBar.SetBlock(Block);
         }
-        else
-        {
-            Debug.Log("Not Enough AP");
-        }
     }
 
     public void buff()
@@ -116,10 +108,6 @@ public class PlayerManager : MonoBehaviour
             Buff DamageBuff = new Buff("DamageBuff" ,Type.Buff, Stats.Damage, 1, -1, "Damage increased by 1 per stack.", 1);
             BuffManager.addBuff(DamageBuff);
         }
-        else
-        {
-            Debug.Log("Not Enough AP");
-        }
     }
 
     public void lifesteal()
@@ -131,10 +119,6 @@ public class PlayerManager : MonoBehaviour
 			playAnimationClip("buff");
             Buff LifestealBuff = new Buff("LifestealBuff", Type.Buff, Stats.Lifesteal, 34, 3, "Attacks heal for one third of damage dealt.", -1);
             BuffManager.addBuff(LifestealBuff);
-        }
-        else
-        {
-            Debug.Log("Not Enough AP");
         }
     }
 

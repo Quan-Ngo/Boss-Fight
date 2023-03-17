@@ -24,7 +24,6 @@ public class BuffManager : MonoBehaviour
     {
         foreach (KeyValuePair<string, Buff> buff in ActiveBuffs)
         {
-            Debug.Log("Buff " + buff.Value.Name + ": " + buff.Value.Duration);
             if (buff.Value.Duration > 1)
             {
                 buff.Value.Duration -= 1;
@@ -39,7 +38,6 @@ public class BuffManager : MonoBehaviour
         foreach (Buff buff in ExpiredBuffs)
         {
             removeBuff(buff);
-            Debug.Log("Removed " + buff.Name);
         }
 		ExpiredBuffs.Clear();
     }

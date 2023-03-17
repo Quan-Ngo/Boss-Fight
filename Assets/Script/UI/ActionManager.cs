@@ -64,10 +64,6 @@ public class ActionManager : MonoBehaviour
         {
 			PlayerManager.Instance.attack();
         }
-        else
-        {
-			Debug.Log("Not your turn");
-        }
     }
 
 	public void defend()
@@ -75,10 +71,6 @@ public class ActionManager : MonoBehaviour
 		if (isPlayerTurn())
 		{
 			PlayerManager.Instance.defend();
-		}
-		else
-		{
-			Debug.Log("Not your turn");
 		}
 	}
 
@@ -88,10 +80,6 @@ public class ActionManager : MonoBehaviour
 		{
 			PlayerManager.Instance.buff();
 		}
-		else
-		{
-			Debug.Log("Not your turn");
-		}
 	}
 
 	public void lifesteal()
@@ -99,10 +87,6 @@ public class ActionManager : MonoBehaviour
 		if (isPlayerTurn())
 		{
 			PlayerManager.Instance.lifesteal();
-		}
-		else
-		{
-			Debug.Log("Not your turn");
 		}
 	}
 }

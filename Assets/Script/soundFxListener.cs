@@ -8,6 +8,7 @@ public class soundFxListener : MonoBehaviour
 	
 	public void playAudio()
 	{
+		audioSource.Stop();
 		audioSource.Play();
 	}
 }
