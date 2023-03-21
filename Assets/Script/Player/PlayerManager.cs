@@ -70,13 +70,8 @@ public class PlayerManager : MonoBehaviour
 	public void dealDamage()
 	{
 		int damageDealt;
-		damageDealt = Damage + TempDamage;
 		
-		if (damageDealt < 0)
-		{
-			damageDealt = 0;
-		}
-		
+		damageDealt = System.Math.Max(0, Damage + TempDamage);
 		BossManager.Instance.takeDamage(damageDealt);
 
 		if(Lifesteal + TempLifesteal > 0)
