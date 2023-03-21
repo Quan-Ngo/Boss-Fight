@@ -81,11 +81,11 @@ public class BossManager : MonoBehaviour
 			StartCoroutine(beginEnrage());
 		}
 		
-		if (!enraged)
+		if (!enraged && bossHealth > 0)
 		{
 			StartCoroutine(normalAI());
 		}
-		else
+		else if (bossHealth > 0)
 		{
 			StartCoroutine(enragedAI());
 		}	
