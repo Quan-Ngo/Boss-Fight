@@ -39,7 +39,7 @@ public class ActionManager : MonoBehaviour
 	public void updateTips()
 	{
 		Action1Tip.tipToShow = "Slash\nCost: 1AP\n\nAttack for " +
-			(PlayerManager.Instance.Damage + PlayerManager.Instance.TempDamage) + " damage.";
+			System.Math.Max(0, (PlayerManager.Instance.Damage + PlayerManager.Instance.TempDamage)) + " damage.";
 
 		Action2Tip.tipToShow = "Shield\nCost: 2AP\n\nGain " +
 			(PlayerManager.Instance.Defense + PlayerManager.Instance.TempDefense) + " block.";
