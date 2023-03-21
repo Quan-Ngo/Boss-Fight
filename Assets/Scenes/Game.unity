@@ -3445,7 +3445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phaseOneThreshholdPercent: 85
-  phaseTwoThreshholdPercent: 60
+  phaseTwoThreshholdPercent: 55
   phaseThreeThreshholdPercent: 20
   maxBossHealth: 200
   enrageTurn: 25
@@ -3464,7 +3464,7 @@ MonoBehaviour:
   - {fileID: 1397071583}
   phaseOneTurnLimit: 7
   phaseTwoTurnLimit: 13
-  phaseThreeTurnLimit: 18
+  phaseThreeTurnLimit: 20
   bossHealth: 0
   bossPhase: 0
   baseDamage: 3

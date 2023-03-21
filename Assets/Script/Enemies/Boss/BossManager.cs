@@ -244,11 +244,14 @@ public class BossManager : MonoBehaviour
 		{
 			case 1:
 				StartCoroutine(debuffPlayerDamage(10));
+				yield return new WaitForSeconds(1f);
+				StartCoroutine(buffSelfDamage(2));
+				yield return new WaitForSeconds(1f);
 				break;
 			case 2:
 				StartCoroutine(debuffPlayerBlock(2));
 				yield return new WaitForSeconds(1f);
-				StartCoroutine(buffSelfDamage(3));
+				StartCoroutine(buffSelfDamage(4));
 				yield return new WaitForSeconds(1f);
 				StartCoroutine(debuffPlayerDamage(4));
 				yield return new WaitForSeconds(1f);
