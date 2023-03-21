@@ -32,6 +32,7 @@ public class BossManager : MonoBehaviour
 
 	[SerializeField] private HealthBar healthBar;
 	[SerializeField] private GameObject buffIcon;
+	[SerializeField] private int prevBossPhase;
 
 	private AudioSource audioSource;
 	Dictionary<string, Buff> BossBuffs = new Dictionary<string, Buff>();
@@ -240,26 +241,30 @@ public class BossManager : MonoBehaviour
 	IEnumerator changePhase()
 	{
 		phaseChangeFX.SetTrigger("Start");
-		switch (bossPhase)
+		while (prevBossPhase < bossPhase)
 		{
-			case 1:
-				StartCoroutine(debuffPlayerDamage(10));
-				yield return new WaitForSeconds(1f);
-				StartCoroutine(buffSelfDamage(2));
-				yield return new WaitForSeconds(1f);
-				break;
-			case 2:
-				StartCoroutine(debuffPlayerBlock(2));
-				yield return new WaitForSeconds(1f);
-				StartCoroutine(buffSelfDamage(4));
-				yield return new WaitForSeconds(1f);
-				StartCoroutine(debuffPlayerDamage(4));
-				yield return new WaitForSeconds(1f);
-				break;
-			case 3:
-				StartCoroutine(debuffPlayerDamage(5));
-				yield return new WaitForSeconds(1f);
-				break;
+			switch (prevBossPhase)
+			{
+				case 0:
+					StartCoroutine(debuffPlayerDamage(10));
+					yield return new WaitForSeconds(1f);
+					StartCoroutine(buffSelfDamage(2));
+					yield return new WaitForSeconds(1f);
+					break;
+				case 1:
+					StartCoroutine(debuffPlayerBlock(2));
+					yield return new WaitForSeconds(1f);
+					StartCoroutine(buffSelfDamage(4));
+					yield return new WaitForSeconds(1f);
+					StartCoroutine(debuffPlayerDamage(4));
+					yield return new WaitForSeconds(1f);
+					break;
+				case 2:
+					StartCoroutine(debuffPlayerDamage(5));
+					yield return new WaitForSeconds(1f);
+					break;
+			}
+			prevBossPhase++;
 		}
 	}
 	
